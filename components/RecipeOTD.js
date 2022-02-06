@@ -39,7 +39,7 @@ Blandit massa enim nec dui nunc mattis. Ut aliquam purus sit amet luctus. Magna 
                flexDirection="column"
                
                >
-               <Image height={350} width={350} pl={4} src="https://via.placeholder.com/350"></Image>
+               <Image width={350} pl={4} src="https://via.placeholder.com/350"></Image>
                <Text fontSize="xl" mt={10}>Missing Ingredients: </Text>
                <List spacing={4}>
                    <ListItem>
