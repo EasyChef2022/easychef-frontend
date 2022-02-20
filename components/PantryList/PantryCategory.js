@@ -37,8 +37,13 @@ const PantryCategory = (props) => {
                     <ListIcon as={ChevronRightIcon} color='green.500' />
                     <Text>{ingredient[0] /* Ingredient (Rosemary) */}</Text>
                     <Spacer/>
+                    {ingredient[1]!=-1 ? ( //-1 means infinite amount
+                    <>
                     <Text>{ingredient[1] /* Amount (3) */}</Text>
                     <Text>{ingredient[2] /* Measurement (Stems) */}</Text>
+                    </>
+                    ): (<></>)}
+                    
                     <ListIcon as={SmallCloseIcon} color='green.500' sx={{ cursor: 'pointer' }}/>
                 </HStack>
             </ListItem>
