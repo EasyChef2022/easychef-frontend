@@ -15,7 +15,9 @@ import { Header } from '../components/Header'
 import { RecipeOTD } from '../components/RecipeOTD'
 import { Sidebar } from '../components/Sidebar'
 
-const Index = () => (
+const Index = () => {
+
+  return(
   <Flex
     justifyContent="space-between"
     flexDirection="column"
@@ -32,7 +34,9 @@ const Index = () => (
     </Flex>
 
   </Flex>
+  );
+  
 
-)
+}
 
 export default Index
