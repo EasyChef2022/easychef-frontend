@@ -14,7 +14,7 @@ import {
 import { Header } from '../components/Header'
 import { LoginComponent } from '../components/LoginComponent'
 
-const login = () => {
+const Login = () => {
 
     
     return (
@@ -33,4 +33,4 @@ const login = () => {
         </>)
 }
 
-export default login
+export default Login

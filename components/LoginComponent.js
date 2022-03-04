@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Box,
     Stack,
@@ -16,16 +16,49 @@ import {
 
 } from "@chakra-ui/react";
 import NextLink from "next/link"
-import { FcGoogle } from 'react-icons/fc';
+import { Router } from "next/router";
+
 
 export const LoginComponent = () => {
 
+
+    //TODO: Error handling
+    
+    const [formError, setFormError] = useState("");
     const [showPass, setShowPass] = useState(false);
+    const [username, setUsername] = useState();
+    const [password, setPassword] = useState();
 
     const toggleShowPass = () => {
         setShowPass(!showPass);
     }
 
+    
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "username": username,
+                "password": password
+                })
+           
+        };
+        fetch('http://127.0.0.1:8000/user/sign_in', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            alert(data.success);
+            if(data.success){
+                sessionStorage.setItem('username', username);
+                location.href = '/';
+            }
+            
+        })
+        .catch((error)=>
+            console.log(error));
+        
+    }
 
     return (
         <>
@@ -37,10 +70,10 @@ export const LoginComponent = () => {
 
             >
                 <Heading color="teal.400">
-                   EasyChef Sign In
+                    EasyChef Sign In
                 </Heading>
                 <Box pt={5} minW={{ md: "500px" }}>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <Stack
                             spacing={4}
                             p="5"
@@ -49,7 +82,7 @@ export const LoginComponent = () => {
 
                         >
                             <FormControl>
-                                <Input type="text" placeholder="username" />
+                                <Input type="text" placeholder="username" onChange={e => setUsername(e.target.value)} />
                             </FormControl>
 
                             <FormControl>
@@ -57,14 +90,15 @@ export const LoginComponent = () => {
                                     <Input
                                         type={showPass ? "text" : "password"}
                                         placeholder="Password"
+                                        onChange={e => setPassword(e.target.value)}
                                     />
 
                                     <InputRightElement width="20">
-                                        <Button 
-                                        size="sm" 
-                                        colorScheme="teal"
-                                        
-                                        onClick={toggleShowPass}>
+                                        <Button
+                                            size="sm"
+                                            colorScheme="teal"
+
+                                            onClick={toggleShowPass}>
                                             {showPass ? "Hide" : "Show"}
                                         </Button>
                                     </InputRightElement>
@@ -73,7 +107,7 @@ export const LoginComponent = () => {
                                 <Box mt={3} >
                                     <NextLink href="#">
                                         <Link
-                                        pt={4}
+                                            pt={4}
 
                                         ><Text textColor="gray.500">Forgot Password?</Text>
                                         </Link>
@@ -87,25 +121,26 @@ export const LoginComponent = () => {
                                 colorScheme="teal"
                                 width="full"
                             >
-                                Login
+                                Log In
                             </Button>
-                            
-                            <Box 
-                            alignSelf="center"
-                            justifyContent="center"
-                            width="50%">
+
+                            <Box
+                                alignSelf="center"
+                                justifyContent="center"
+                                width="50%">
                                 <Text textAlign="center">Need an Account?</Text>
                                 <NextLink href="/signup">
                                     <Button
-                                    borderRadius={0}
-                                    type="submit"
-                                    variant="solid"
-                                    colorScheme="teal"
-                                    width="100%"
+                                        borderRadius={0}
+                                        type="submit"
+                                        variant="solid"
+                                        colorScheme="teal"
+                                        width="100%"
                                     >
                                         Sign Up
                                     </Button>
                                 </NextLink>
+                               
                             </Box>
                         </Stack>
                     </form>

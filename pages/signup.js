@@ -14,7 +14,7 @@ import {
 import { Header } from '../components/Header'
 import { SignupComponent } from '../components/SignupComponent'
 
-const login = () => {
+const Signup = () => {
 
     
     return (
@@ -33,4 +33,4 @@ const login = () => {
         </>)
 }
 
-export default login
+export default Signup
