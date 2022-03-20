@@ -13,7 +13,7 @@ import {
 
 
 
-export const RecipeOTD = () => {
+export const Recipe = () => {
     return(
        <Flex
         flexDirection="column"

@@ -12,7 +12,7 @@ import {
     Stack
   } from '@chakra-ui/react'
   import { Header } from '../components/Header'
-  import { RecipeOTD } from '../components/RecipeOTD'
+  import { Recipe } from '../components/Recipe'
   import { Sidebar } from '../components/Sidebar'
   
   
@@ -26,7 +26,7 @@ import {
     >
       <Header />
       <Flex flexDirection="row">
-        <RecipeOTD />
+        <Recipe />
         <Spacer />
         <Stack direction="row">
           <Divider orientation="vertical" />
