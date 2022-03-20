@@ -20,15 +20,19 @@ const PantryCategory = (props) => {
     const toggleCollapse = () => {
         setCollapsed(!collapsed);
     }
+    let data = [];
+    if(props.dbname=="herbs"){
+        data = [["Basil", 1, "bunches"], ["Sage", 2, "tbsp"], ["Rosemary", 3, "stems"], ["Thyme", -1, "measurement"]];
+    }
 
     return (
         <>
         <ListItem onClick={toggleCollapse} sx={{ cursor: 'pointer', userSelect: "none" }}>
             <ListIcon as={collapsed ? ArrowForwardIcon : ArrowDownIcon}  color='green.500' />
-            {props.name} ({props.data?.length})
+            {props.catname} ({data?.length})
         </ListItem>
         
-        {props.data?.map((ingredient)=>(
+        {data?.map((ingredient)=>(
             
             <>
             <Box sx={{display: collapsed ? "none" : "block"}}>

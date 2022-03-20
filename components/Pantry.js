@@ -13,11 +13,8 @@ import PantryCategory from "./PantryList/PantryCategory";
 
 export const Pantry = () => {
 
-    const numHerbs = 25;
-    const numSpices = 13;
-    const numProteins = 209;
-    const numVegetables = 2;
-    const herbData = [["Basil", 1, "bunches"], ["Sage", 2, "tbsp"], ["Rosemary", 3, "Stems"], ["Thyme", -1, "measurement"]];
+    
+    
 
     return (
         <Flex flexDirection="column" alignSelf="flex-start" pl={4} pt={4} width="100%" pr={8}>
@@ -26,20 +23,21 @@ export const Pantry = () => {
                 </Text>
                 <List spacing={3} fontSize="24" mt={2}>
                     <PantryCategory 
-                    name="Herbs"
-                    data={herbData}/>
+                    dbname="herbs"
+                    catname="Herbs"
+                    />
 
                     <PantryCategory 
-                    name="Spices"
-                    amount={numSpices}/>
+                    dbname="spices"
+                    catname="Spices"/>
                     
                     <PantryCategory 
-                    name="Proteins"
-                    amount={numProteins}/>
+                    dbname="proteins"
+                    catname="Proteins"/>
 
                     <PantryCategory 
-                    name="Vegetables"
-                    amount={numVegetables}/>
+                    dbname="vegetables"
+                    catname="Vegetables"/>
 
                 </List>
             </Flex>

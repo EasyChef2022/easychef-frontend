@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useEffect } from "react";
 import {
     Box,
     Stack,
@@ -7,14 +7,27 @@ import {
     Text,
     Button,
     Spacer,
+    HStack
 } from "@chakra-ui/react";
 import NextLink from "next/link"
-
 export const Header = () => {
 
-    const [signedIn, setSignedIn] = useState(false);
 
-    const username="Matthew"
+    //Temp idk if this works
+    const [username, setUsername] = useState("");
+    useLayoutEffect(() => {
+        if (sessionStorage.getItem('username')) {
+            setUsername((sessionStorage.getItem('username')))
+        } else {
+            sessionStorage.setItem('username', username)
+        }
+    }, [])
+
+    useEffect(() => {
+        sessionStorage.setItem('username', username)
+    }, [username])
+
+
     return (
         <Flex
             as="nav"
@@ -35,35 +48,47 @@ export const Header = () => {
             </Flex>
             <Spacer />
             <Flex>
-            <Box display={!signedIn ? 'block' : 'none'}>
-                <NextLink href="/login">
-                    <Button
-                        variant="outline"
-                        _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-                    >
-                        Sign In
-                    </Button>
-                </NextLink>
-                <NextLink href="/signup">
-                    <Button
-                        variant="outline"
-                        _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+                <Box display={!username != "" ? 'block' : 'none'}>
+                    <NextLink href="/login">
+                        <Button
+                            variant="outline"
+                            _hover={{ bg: "teal.700", borderColor: "teal.700" }}
 
-                    >
-                        Create account
-                    </Button>
-                </NextLink>
+                        >
+                            Sign In
+                        </Button>
+                    </NextLink>
+                    <NextLink href="/signup">
+                        <Button
+                            variant="outline"
+                            _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+                        >
+                            Create account
+                        </Button>
+                    </NextLink>
 
-            </Box>
-            <Text 
-            fontSize="24px"
-            as="i"
-            display={signedIn ? 'block' : 'none'}
-                >
-                    Welcome, {username}
-                </Text>
+                </Box>
+                <Box display={username != "" ? 'block' : 'none'}>
+                    <HStack>
+                        <Box mr="4">
+                            <Text
+                                fontSize="24px"
+                                as="i"
+                            >
+                                Welcome, {username}
+                            </Text>
+                        </Box>
+                        <Button
+                            variant="outline"
+                            ml={10}
+                            _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+                            onClick={() => { setUsername(""); window.location.reload(false); }}
+                        >
+                            Sign Out
+                        </Button>
+                    </HStack>
+                </Box>
             </Flex>
         </Flex>
     );
-
 }
