@@ -21,15 +21,16 @@ import {
 import {
     SearchIcon,
     SmallAddIcon,
-ArrowForwardIcon,
-ArrowDownIcon,
-ArrowRightIcon,
-StarIcon,
-SmallCloseIcon,
-MinusIcon,
-ChevronRightIcon,
+    ArrowForwardIcon,
+    ArrowDownIcon,
+    ArrowRightIcon,
+    StarIcon,
+    SmallCloseIcon,
+    MinusIcon,
+    ChevronRightIcon,
 } from "@chakra-ui/icons";
 import { Pantry } from "./Pantry";
+import Link from "next/link";
 
 export const Sidebar = () => {
 
@@ -37,11 +38,11 @@ export const Sidebar = () => {
     return (
         <VStack ml={4} mr={6} mt="5vh" spacing={4} pl={4} pr={4} pt={4} direction='row' align='center' height="80vh" >
 
-            
+
             <Heading textColor="black" size="2xl">
                 Pantry At-A-Glance
             </Heading>
-            
+
             <Flex flexDirection="row">
                 <InputGroup width="fit-content" mr={4}>
                     <InputLeftElement
@@ -53,13 +54,13 @@ export const Sidebar = () => {
                 <Button colorScheme='teal' size='md'>
                     Add Ingredient
                 </Button>
-                
+
             </Flex>
 
             <Pantry />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>
-                Get Recipes
+                <Link href="../recipes">Get Recipes</Link>
             </Button>
         </VStack>
     );

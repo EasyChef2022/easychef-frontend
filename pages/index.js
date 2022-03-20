@@ -1,4 +1,6 @@
+import React from "react";
 import {
+
     Link as ChakraLink,
     Text,
     Flex,
@@ -20,18 +22,22 @@ import {
   
     return(
       
+
     <Flex
       justifyContent="space-between"
       flexDirection="column"
     >
       <Header />
       <Flex flexDirection="row">
+
         <Recipe />
+
         <Spacer />
         <Stack direction="row">
           <Divider orientation="vertical" />
           <Sidebar />
         </Stack>
+
   
       </Flex>
   
@@ -42,3 +48,4 @@ import {
   }
   
   export default Index
+
