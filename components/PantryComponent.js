@@ -11,7 +11,7 @@ import {
 import { ArrowForwardIcon, ChevronRightIcon, ArrowDownIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import PantryCategory from "./PantryList/PantryCategory";
 
-export const Pantry = () => {
+export const PantryComponent = () => {
 
     
     
@@ -22,22 +22,25 @@ export const Pantry = () => {
                     Available Ingredients:
                 </Text>
                 <List spacing={3} fontSize="24" mt={2}>
-                    <PantryCategory 
+                    <PantryCategory
                     dbname="herbs"
                     catname="Herbs"
                     />
 
                     <PantryCategory 
                     dbname="spices"
-                    catname="Spices"/>
+                    catname="Spices"
+                    />
                     
                     <PantryCategory 
                     dbname="proteins"
-                    catname="Proteins"/>
+                    catname="Proteins"
+                    />
 
                     <PantryCategory 
                     dbname="vegetables"
-                    catname="Vegetables"/>
+                    catname="Vegetables"
+                    />
 
                 </List>
             </Flex>

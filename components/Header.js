@@ -46,6 +46,36 @@ export const Header = () => {
                     </Heading>
                 </NextLink>
             </Flex>
+
+            <HStack>
+                <NextLink href="/pantry">
+                <Button
+                    variant="outline"
+                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+
+                >
+                    Pantry
+                </Button>
+                </NextLink>
+                <NextLink href="/recipes">
+                <Button
+                    variant="outline"
+                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+
+                >
+                    Recipes
+                </Button>
+                </NextLink>
+                <NextLink href="/favorites">
+                <Button
+                    variant="outline"
+                    _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+
+                >
+                    Favorites
+                </Button>
+                </NextLink>
+            </HStack>
             <Spacer />
             <Flex>
                 <Box display={!username != "" ? 'block' : 'none'}>

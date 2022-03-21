@@ -29,7 +29,7 @@ import {
     MinusIcon,
     ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { Pantry } from "./Pantry";
+import { PantryComponent } from "./PantryComponent";
 import Link from "next/link";
 
 export const Sidebar = () => {
@@ -57,7 +57,7 @@ export const Sidebar = () => {
 
             </Flex>
 
-            <Pantry />
+            <PantryComponent />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>
                 <Link href="../recipes">Get Recipes</Link>
