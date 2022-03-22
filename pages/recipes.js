@@ -54,7 +54,6 @@ function Options() {
 }
 
 
-
 export const Recipes = () => {
     useEffect(() => {
 
@@ -115,7 +114,7 @@ export const Recipes = () => {
                 <HStack marginTop={200}>
                     <Box>
                         <VStack>
-                            <Box paddingTop={4}>
+                            <Box>
                                 <strong>Bought some rice? Just run out of parsley? Want to prioritize that
                                     salmon that's about to go bad? <Link href='/pantry'>
                                         <ChakraLink color='teal.500'>Go to your pantry
@@ -123,7 +122,7 @@ export const Recipes = () => {
                                     </Link>
                                 </strong>
                             </Box>
-                            <Box paddingLeft={4} paddingRight={4} align='self-start'
+                            <Box paddingTop="-4" paddingLeft={4} paddingRight={4} align='self-start'
                             >
                                 <Options />
                             </Box>

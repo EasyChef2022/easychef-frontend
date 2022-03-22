@@ -67,10 +67,18 @@ const PantryPage = () => {
                 <Button colorScheme='teal' size='md'>
                     <Link href="/recipes">
                         <ChakraLink> <strong>Get Recipes</strong> </ChakraLink>
-                    </Link></Button>
 
-            </Center>
+                    </Link>
+                </Button>
+                <Button size='md' colorScheme='teal'>
+                    <Link href="/favorites">
+                        <ChakraLink><strong>See favorite recipes</strong></ChakraLink>
+                    </Link>
+                </Button>
+            </HStack>
+
         </>
+
     );
 }
 export default PantryPage;
