@@ -8,32 +8,35 @@ import {
     Box,
     Spacer,
     List,
-    ListItem
+    UnorderedList,
+    ListItem,
+    VStack,
+    HStack,
+    OrderedList,
+    Divider
 } from "@chakra-ui/react";
 
 
 
-export const Recipe = () => {
-    return(
-       <Flex
-        flexDirection="column"
-       width="70%"
-       ml={10} mt={4} 
-       >
-           <Heading size="2xl">Recipe Of The Day</Heading>
-           <Flex 
+export const Recipe = (props) => {
+
+    console.log(props.data);
+    return (
+
+        <Flex
+            flexDirection="column"
+            width="70%"
+            ml={10} mt={4}
+        
+        >
+            <Heading size="3xl">Recipe Of The Day</Heading>
+            {/* <Flex 
            mt={20}
            ml={5} 
            flexDirection="row" 
            justifyContent="space-between" 
            >
-           <Text width="70%">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus gravida quis blandit turpis cursus in hac habitasse platea. Tristique risus nec feugiat in. Diam maecenas sed enim ut sem viverra aliquet eget. Est pellentesque elit ullamcorper dignissim cras tincidunt. Sodales neque sodales ut etiam sit amet nisl. Cursus eget nunc scelerisque viverra mauris in aliquam sem fringilla. Eget nunc lobortis mattis aliquam faucibus purus in. Tellus rutrum tellus pellentesque eu. Viverra tellus in hac habitasse platea. Dui sapien eget mi proin. In hac habitasse platea dictumst quisque sagittis purus. Eu facilisis sed odio morbi quis commodo odio aenean.
-
-Pharetra et ultrices neque ornare aenean euismod elementum nisi quis. Lorem donec massa sapien faucibus et molestie ac feugiat. Dictum at tempor commodo ullamcorper. Suspendisse interdum consectetur libero id faucibus nisl. Pellentesque elit ullamcorper dignissim cras tincidunt lobortis feugiat. Tempor orci eu lobortis elementum. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non. Convallis tellus id interdum velit laoreet id donec ultrices. Volutpat diam ut venenatis tellus in. Pulvinar elementum integer enim neque.
-
-Neque volutpat ac tincidunt vitae semper quis lectus nulla. Massa tincidunt dui ut ornare. Id eu nisl nunc mi ipsum faucibus. Habitasse platea dictumst vestibulum rhoncus est pellentesque. Maecenas sed enim ut sem viverra aliquet eget sit. Consequat id porta nibh venenatis cras sed felis eget. Sit amet risus nullam eget felis eget nunc. Elementum nisi quis eleifend quam adipiscing. Sit amet commodo nulla facilisi. Dignissim enim sit amet venenatis urna cursus eget nunc.
-
-Blandit massa enim nec dui nunc mattis. Ut aliquam purus sit amet luctus. Magna sit amet purus gravida quis. Tortor aliquam nulla facilisi cras fermentum odio. Vitae proin sagittis nisl rhoncus mattis rhoncus urna neque. Risus quis varius quam quisque id diam vel. Pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus. Adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Accumsan lacus vel facilisis volutpat est velit. Massa massa ultricies mi quis hendrerit dolor magna eget est. Eget aliquet nibh praesent tristique magna sit. Sed vulputate mi sit amet mauris. Eu tincidunt tortor aliquam nulla facilisi cras fermentum odio. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque. Ut tortor pretium viverra suspendisse potenti nullam ac tortor. Nec feugiat in fermentum posuere urna.</Text>
+           <Text width="70%"></Text>
                <Spacer/>
                <Flex 
                flexDirection="column"
@@ -47,7 +50,68 @@ Blandit massa enim nec dui nunc mattis. Ut aliquam purus sit amet luctus. Magna 
                    </ListItem>
                </List>
                </Flex>
-           </Flex>
-       </Flex>
+           </Flex> */}
+
+           {props.data!=null ? (
+               <HStack >
+               <VStack pt={10} justifyContent="left" width="70%" height="100%">
+                   <Heading size="2xl" alignSelf="flex-start" pl={20}>{props.data.title}</Heading>
+                   <HStack alignSelf="flex-start" width="100%">
+                       <Box pl={20} pt={10} width="40%" alignSelf="flex-start">
+                           <Box  justifySelf="right" fontWeight="bold" >Ingredients</Box>
+                           <UnorderedList spacing={3} pt={5}>
+                               {/* <ListItem>1 cup butter, softened</ListItem>
+                               <ListItem>1 cup white sugar</ListItem>
+                               <ListItem>1 cup packed brown sugar</ListItem>
+                               <ListItem>2 eggs</ListItem>
+                               <ListItem>2 teaspoons vanilla extract</ListItem>
+                               <ListItem>1 teaspoon baking soda</ListItem>
+                               <ListItem>2 teaspoons hot water</ListItem>
+                               <ListItem>½ teaspoon salt</ListItem>
+                               <ListItem>3 cups all-purpose flour</ListItem>
+                               <ListItem>2 cups semisweet chocolate chips</ListItem>
+                               <ListItem>1 cup chopped walnuts</ListItem> */}
+
+                               {props.data.ingredients.map((ingredient)=>
+                               <ListItem>{ingredient}</ListItem>
+                               )}
+                           </UnorderedList>
+                           
+                       </Box>
+                       <Box width="60%" alignSelf="flex-start" pt={10} pr={20}>
+                           <Box fontWeight="bold">
+                           Directions
+                           </Box>
+                           <OrderedList spacing={5} pt={5}>
+                               {/* <ListItem>
+                               Preheat oven to 350 degrees F (175 degrees C).
+                               </ListItem>
+                               <ListItem>
+                               Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans.
+                               </ListItem>
+                               <ListItem>
+                               Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.
+                               </ListItem> */}
+                               {props.data.instructions.map((instruction)=>
+                               <ListItem>{instruction}</ListItem>
+                               )}
+                           </OrderedList>
+                       </Box>
+                   </HStack>
+
+               </VStack>
+               <VStack height="100%" width="30%">
+                   <Image width={350} pl={4} src={props.data.photo_url}></Image>
+                   <Text fontSize="xl" mt={10}>Missing Ingredients: </Text>
+                   <List spacing={4}>
+                       <ListItem>
+                           <Text>Water</Text>
+                       </ListItem>
+                   </List>
+               </VStack>
+           </HStack>
+           ) : (<Text>Loading...</Text>)}
+            
+        </Flex>
     );
 }

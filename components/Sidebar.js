@@ -29,7 +29,7 @@ import {
     MinusIcon,
     ChevronRightIcon,
 } from "@chakra-ui/icons";
-import { Pantry } from "./Pantry";
+import { PantryComponent } from "./PantryComponent";
 import Link from "next/link";
 
 export const Sidebar = () => {
@@ -43,21 +43,8 @@ export const Sidebar = () => {
                 Pantry At-A-Glance
             </Heading>
 
-            <Flex flexDirection="row">
-                <InputGroup width="fit-content" mr={4}>
-                    <InputLeftElement
-                        pointerEvents='none'
-                        children={<SearchIcon color='gray.300' />}
-                    />
-                    <Input placeholder='Search Ingredients' />
-                </InputGroup>
-                <Button colorScheme='teal' size='md'>
-                    Add Ingredient
-                </Button>
-
-            </Flex>
-
-            <Pantry />
+            
+            <PantryComponent />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>
                 <Link href="../recipes">Get Recipes</Link>

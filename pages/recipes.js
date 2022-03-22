@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../components/Header";
 import {
     Stack,
@@ -23,6 +23,9 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
+import { RecipesList } from "../components/RecipePage/RecipesList";
+
+
 
 function Options() {
     return (
@@ -50,58 +53,57 @@ function Options() {
     );
 }
 
-function RecipesList() {
-    const displayRecipes = [...data];
-    if (displayRecipes.length === 0) {
-        return (
-            <strong>No recipes found!
-                <Link href="/pantry">
-                    <ChakraLink color='teal.500'> Update your pantry ingredients </ChakraLink>
-                </Link>
-                and try again.</strong>
 
-        );
-    }
-    else {
-        return (
-            <VStack>
-                {displayRecipes.map(function (recipe) {
-                    return (
-                        <RecipeCard
-                            recipe={recipe}
-                        />
-                    );
-                })}
+export const Recipes = () => {
+    useEffect(() => {
 
-            </VStack>
-        );
-    }
-}
+        
+        let ingredients = [];
+        const herbs = JSON.parse(sessionStorage.getItem('herbs'));
+        const spices = JSON.parse(sessionStorage.getItem('spices'));
+        const proteins = JSON.parse(sessionStorage.getItem('proteins'));
+        const vegetables = JSON.parse(sessionStorage.getItem('vegetables'));
 
-function RecipeCard({ recipe }) {
-    return (
-        <Box shadow='md' marginLeft={2} marginRight={1} w='100%'
-            paddingBottom={2}>
-            <HStack justifyContent='start' spacing='24px' marginLeft={2}>
-                <Box width='100px'>
-                    <strong>{recipe.name}</strong>
-                    <Image src={`dummy-recipe.jpg`} />
-                </Box>
-                <VStack>
-                    <Box>
-                        <p>{recipe.description}</p>
-                        <p><strong>Cook time:</strong> {recipe.cook_time}</p>
-                        <p><strong>Serving size:</strong> {recipe.serving_size}</p>
-                        <p>Add to favorite recipes <StarIcon /></p>
-                        <Button size='sm' colorScheme='teal'>Show full recipe</Button>
-                    </Box>
-                </VStack>
-            </HStack>
-        </Box>
-    );
-}
+        if(herbs!=null && herbs.length!=0){
+            ingredients.push(herbs);
+        }
+        if(spices!=null && spices.length!=0){
+            ingredients.push(spices);
+        }
+        if(proteins!=null && proteins.length!=0){
+            ingredients.push(proteins);
+        }
+        if(vegetables!=null && vegetables.length!=0){
+            ingredients.push(vegetables);
+        }
+        
 
-function Recipes() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "ingredients": ingredients.flat(),
+                "ban": [""]
+            })
+
+
+        };
+
+        //alert(ingredients);
+
+        fetch('http://127.0.0.1:8000/recipe/get_recipe_by_ingredients', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success != 0) {
+                alert(JSON.stringify(data));
+            }
+
+        })
+        .catch((error) =>
+            console.log(error));
+
+
+    }, [])
     return (
         <Box>
             <Header />
