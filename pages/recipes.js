@@ -91,23 +91,23 @@ export const Recipes = () => {
 
         //alert(ingredients);
 
-        fetch('http://127.0.0.1:8000/recipe/get_recipe_by_ingredients', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-            if (data.success != 0) {
-                alert(JSON.stringify(data));
-            }
+        // fetch('http://127.0.0.1:8000/recipe/get_recipe_by_ingredients', requestOptions)
+        // .then(response => response.json())
+        // .then(data => {
+        //     if (data.success != 0) {
+        //         alert(JSON.stringify(data));
+        //     }
 
-        })
-        .catch((error) =>
-            console.log(error));
+        // })
+        // .catch((error) =>
+        //     console.log(error));
 
 
     }, [])
     return (
         <Box>
             <Header />
-            <Flex justifyContent="space-between"
+            <Flex justifyContent="center"
                 flexDirection="row"
                 marginTop={10}
                 h='10'>
@@ -126,10 +126,8 @@ export const Recipes = () => {
                             >
                                 <Options />
                             </Box>
-
-                            <Box maxWidth='50%'>
                                 <RecipesList />
-                            </Box>
+                            
                         </VStack>
                     </Box>
                 </HStack>

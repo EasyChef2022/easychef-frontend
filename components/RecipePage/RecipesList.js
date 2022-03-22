@@ -10,19 +10,20 @@ import {
 } from '@chakra-ui/react';
 
 import { RecipeCard } from "./RecipeCard";
+import { data } from "../../RecipeData";
 
 export const RecipesList = (recipeList) => {
 
-
+    const displayRecipes = [...data];
     return (
-        <VStack>
-            {/* {recipeList.map(function (recipe) {
-                return (
-                    <RecipeCard
-                        recipe={recipe}
-                    />
-                );
-            })} */}
+        <VStack align="center"> 
+            {displayRecipes.map(function (recipe) {
+                    return (
+                        <RecipeCard
+                            recipe={recipe}
+                        />
+                    );
+                })}
         </VStack>
     );
 

@@ -75,7 +75,7 @@ const PantryPage = () => {
                         <ChakraLink><strong>See favorite recipes</strong></ChakraLink>
                     </Link>
                 </Button>
-            </HStack>
+            </Center>
 
         </>
 
