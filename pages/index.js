@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 
     Link as ChakraLink,
@@ -17,8 +17,32 @@ import {
   import { Recipe } from '../components/Recipe'
   import { Sidebar } from '../components/Sidebar'
   
+
+
   
   const Index = () => {
+
+    const [ROTD, setROTD] = useState();
+
+    useEffect(()=>{
+
+      const requestOptions = {
+        method: 'GET',
+
+    };
+
+
+    fetch('http://easychef.herokuapp.com/recipe/get_recipe_of_today', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            setROTD(data);
+
+        })
+        .catch((error) =>
+            console.log(error));
+    }, ROTD)
+
+    
   
     return(
       
@@ -30,7 +54,7 @@ import {
       <Header />
       <Flex flexDirection="row">
 
-        <Recipe />
+        <Recipe data={ROTD}/>
 
         <Spacer />
         <Stack direction="row">
@@ -38,7 +62,6 @@ import {
           <Sidebar />
         </Stack>
 
-  
       </Flex>
   
     </Flex>

@@ -23,7 +23,7 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
-
+import { RecipesList } from "../components/RecipePage/RecipesList";
 
 
 
@@ -53,68 +53,28 @@ function Options() {
     );
 }
 
-function RecipesList() {
 
-
-    return (
-        // <VStack>
-        //     {displayRecipes.map(function (recipe) {
-        //         return (
-        //             <RecipeCard
-        //                 recipe={recipe}
-        //             />
-        //         );
-        //     })}
-        // </VStack>
-        <>
-        </>
-    );
-
-}
-
-function RecipeCard({ recipe }) {
-    return (
-        <Box shadow='md' marginLeft={2} marginRight={1} w='100%'
-            paddingBottom={2}>
-            <HStack justifyContent='start' spacing='24px' marginLeft={2}>
-                <Box width='100px'>
-                    <strong>{recipe.name}</strong>
-                    <Image src={`dummy-recipe.jpg`} />
-                </Box>
-                <VStack>
-                    <Box>
-                        <p>{recipe.description}</p>
-                        <p><strong>Cook time:</strong> {recipe.cook_time}</p>
-                        <p><strong>Serving size:</strong> {recipe.serving_size}</p>
-                        <p>Add to favorite recipes <StarIcon /></p>
-                        <Button size='sm' colorScheme='teal'>Show full recipe</Button>
-                    </Box>
-                </VStack>
-            </HStack>
-        </Box>
-    );
-}
 
 export const Recipes = () => {
     useEffect(() => {
 
-
+        
         let ingredients = [];
         const herbs = JSON.parse(sessionStorage.getItem('herbs'));
         const spices = JSON.parse(sessionStorage.getItem('spices'));
         const proteins = JSON.parse(sessionStorage.getItem('proteins'));
         const vegetables = JSON.parse(sessionStorage.getItem('vegetables'));
 
-        if(herbs.length!=0){
+        if(herbs!=null && herbs.length!=0){
             ingredients.push(herbs);
         }
-        if(spices.length!=0){
+        if(spices!=null && spices.length!=0){
             ingredients.push(spices);
         }
-        if(proteins.length!=0){
+        if(proteins!=null && proteins.length!=0){
             ingredients.push(proteins);
         }
-        if(vegetables.length!=0){
+        if(vegetables!=null && vegetables.length!=0){
             ingredients.push(vegetables);
         }
         

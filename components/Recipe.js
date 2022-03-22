@@ -18,7 +18,9 @@ import {
 
 
 
-export const Recipe = () => {
+export const Recipe = (props) => {
+
+    console.log(props.data);
     return (
 
         <Flex
@@ -49,56 +51,67 @@ export const Recipe = () => {
                </List>
                </Flex>
            </Flex> */}
-            <HStack >
-                <VStack pt={10} justifyContent="left" width="70%" height="100%">
-                    <Heading size="2xl" alignSelf="flex-start" pl={20}>Best Chocolate Chip Cookies</Heading>
-                    <HStack alignSelf="flex-start" width="100%">
-                        <Box pl={20} pt={10} width="40%">
-                            <Box alignSelf="flex-start" justifySelf="right" fontWeight="bold">Ingredients</Box>
-                            <UnorderedList spacing={3} pt={5}>
-                                <ListItem>1 cup butter, softened</ListItem>
-                                <ListItem>1 cup white sugar</ListItem>
-                                <ListItem>1 cup packed brown sugar</ListItem>
-                                <ListItem>2 eggs</ListItem>
-                                <ListItem>2 teaspoons vanilla extract</ListItem>
-                                <ListItem>1 teaspoon baking soda</ListItem>
-                                <ListItem>2 teaspoons hot water</ListItem>
-                                <ListItem>½ teaspoon salt</ListItem>
-                                <ListItem>3 cups all-purpose flour</ListItem>
-                                <ListItem>2 cups semisweet chocolate chips</ListItem>
-                                <ListItem>1 cup chopped walnuts</ListItem>
-                            </UnorderedList>
-                            
-                        </Box>
-                        <Box width="60%" alignSelf="flex-start" pt={10} pr={20}>
-                            <Box fontWeight="bold">
-                            Directions
-                            </Box>
-                            <OrderedList spacing={5} pt={5}>
-                                <ListItem>
-                                Preheat oven to 350 degrees F (175 degrees C).
-                                </ListItem>
-                                <ListItem>
-                                Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans.
-                                </ListItem>
-                                <ListItem>
-                                Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.
-                                </ListItem>
-                            </OrderedList>
-                        </Box>
-                    </HStack>
 
-                </VStack>
-                <VStack height="100%" width="30%">
-                    <Image width={350} pl={4} src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F43%2F2022%2F03%2F08%2F10813-best-chocolate-chip-cookies-mfs-step-7-148.jpg"></Image>
-                    <Text fontSize="xl" mt={10}>Missing Ingredients: </Text>
-                    <List spacing={4}>
-                        <ListItem>
-                            <Text>Water</Text>
-                        </ListItem>
-                    </List>
-                </VStack>
-            </HStack>
+           {props.data!=null ? (
+               <HStack >
+               <VStack pt={10} justifyContent="left" width="70%" height="100%">
+                   <Heading size="2xl" alignSelf="flex-start" pl={20}>{props.data.title}</Heading>
+                   <HStack alignSelf="flex-start" width="100%">
+                       <Box pl={20} pt={10} width="40%" alignSelf="flex-start">
+                           <Box  justifySelf="right" fontWeight="bold" >Ingredients</Box>
+                           <UnorderedList spacing={3} pt={5}>
+                               {/* <ListItem>1 cup butter, softened</ListItem>
+                               <ListItem>1 cup white sugar</ListItem>
+                               <ListItem>1 cup packed brown sugar</ListItem>
+                               <ListItem>2 eggs</ListItem>
+                               <ListItem>2 teaspoons vanilla extract</ListItem>
+                               <ListItem>1 teaspoon baking soda</ListItem>
+                               <ListItem>2 teaspoons hot water</ListItem>
+                               <ListItem>½ teaspoon salt</ListItem>
+                               <ListItem>3 cups all-purpose flour</ListItem>
+                               <ListItem>2 cups semisweet chocolate chips</ListItem>
+                               <ListItem>1 cup chopped walnuts</ListItem> */}
+
+                               {props.data.ingredients.map((ingredient)=>
+                               <ListItem>{ingredient}</ListItem>
+                               )}
+                           </UnorderedList>
+                           
+                       </Box>
+                       <Box width="60%" alignSelf="flex-start" pt={10} pr={20}>
+                           <Box fontWeight="bold">
+                           Directions
+                           </Box>
+                           <OrderedList spacing={5} pt={5}>
+                               {/* <ListItem>
+                               Preheat oven to 350 degrees F (175 degrees C).
+                               </ListItem>
+                               <ListItem>
+                               Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans.
+                               </ListItem>
+                               <ListItem>
+                               Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.
+                               </ListItem> */}
+                               {props.data.instructions.map((instruction)=>
+                               <ListItem>{instruction}</ListItem>
+                               )}
+                           </OrderedList>
+                       </Box>
+                   </HStack>
+
+               </VStack>
+               <VStack height="100%" width="30%">
+                   <Image width={350} pl={4} src={props.data.photo_url}></Image>
+                   <Text fontSize="xl" mt={10}>Missing Ingredients: </Text>
+                   <List spacing={4}>
+                       <ListItem>
+                           <Text>Water</Text>
+                       </ListItem>
+                   </List>
+               </VStack>
+           </HStack>
+           ) : (<Text>Loading...</Text>)}
+            
         </Flex>
     );
 }
