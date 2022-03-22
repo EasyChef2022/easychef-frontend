@@ -2,6 +2,7 @@ import React from "react";
 import { Header } from "../components/Header";
 import {
     Stack,
+    Heading,
     HStack,
     VStack,
     Flex,
@@ -24,33 +25,7 @@ import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
 
-function Options() {
-    return (
-        <HStack>
-            <Box>
-                <Checkbox>Allow recipes with missing ingredients</Checkbox>
-            </Box>
-            <Box>
-                Max Missing Ingredients
-                <NumberInput>
-                    <NumberInputField />
-                    <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                    </NumberInputStepper>
-                </NumberInput>
-            </Box>
-            <Box>
-                <Select placeholder='Sort recipes by'>
-                    <option value='option1'>Cook time</option>
-                    <option value='option3'>Serving size</option>
-                </Select>
-            </Box>
-        </HStack>
-    );
-}
-
-function RecipesList() {
+function FavoritesList() {
     const displayRecipes = [...data];
     if (displayRecipes.length === 0) {
         return (
@@ -65,10 +40,10 @@ function RecipesList() {
     else {
         return (
             <VStack>
-                {displayRecipes.map(function (recipe) {
+                {displayRecipes.map(function (favorite) {
                     return (
-                        <RecipeCard
-                            recipe={recipe}
+                        <FavoriteCard
+                            favorite={favorite}
                         />
                     );
                 })}
@@ -78,21 +53,21 @@ function RecipesList() {
     }
 }
 
-function RecipeCard({ recipe }) {
+function FavoriteCard({ favorite }) {
     return (
         <Box shadow='md' marginLeft={2} marginRight={1} w='100%'
             paddingBottom={2}>
             <HStack justifyContent='start' spacing='24px' marginLeft={2}>
                 <Box width='100px'>
-                    <strong>{recipe.name}</strong>
+                    <strong>{favorite.name}</strong>
                     <Image src={`dummy-recipe.jpg`} />
                 </Box>
                 <VStack>
                     <Box>
-                        <p>{recipe.description}</p>
-                        <p><strong>Cook time:</strong> {recipe.cook_time}</p>
-                        <p><strong>Serving size:</strong> {recipe.serving_size}</p>
-                        <p>Add to favorite recipes <StarIcon /></p>
+                        <p>{favorite.description}</p>
+                        <p><strong>Cook time:</strong> {favorite.cook_time}</p>
+                        <p><strong>Serving size:</strong> {favorite.serving_size}</p>
+                        <p>Remove from favorite recipes <StarIcon /></p>
                         <Button size='sm' colorScheme='teal'>Show full recipe</Button>
                     </Box>
                 </VStack>
@@ -101,7 +76,24 @@ function RecipeCard({ recipe }) {
     );
 }
 
-function Recipes() {
+function ButtonBar() {
+    return (
+        <HStack>
+            <Button size='md' colorScheme='teal'>
+                <Link href="/pantry">
+                    <ChakraLink><strong>Go Back to Pantry</strong></ChakraLink>
+                </Link>
+            </Button>
+            <Button size='md' colorScheme='teal'>
+                <Link href="/recipes">
+                    <ChakraLink><strong>Get Recipes</strong></ChakraLink>
+                </Link>
+            </Button>
+        </HStack>
+    );
+}
+
+function Favorites() {
     return (
         <Box>
             <Header />
@@ -112,21 +104,16 @@ function Recipes() {
                 <HStack marginTop={200}>
                     <Box>
                         <VStack>
-                            <Box>
-                                <strong>Bought some rice? Just run out of parsley? Want to prioritize that
-                                    salmon that's about to go bad? <Link href='/pantry'>
-                                        <ChakraLink color='teal.500'>Go to your pantry
-                                            and update it!</ChakraLink>
-                                    </Link>
-                                </strong>
+                            <Box paddingTop={4}>
+                                <Box align="center" marginRight={4}>
+                                    <Heading size='xl'>
+                                        My Favorite Recipes
+                                    </Heading>
+                                </Box>
                             </Box>
-                            <Box paddingTop="-4" paddingLeft={4} paddingRight={4} align='self-start'
-                            >
-                                <Options />
-                            </Box>
-
+                            <ButtonBar />
                             <Box maxWidth='50%'>
-                                <RecipesList />
+                                <FavoritesList />
                             </Box>
                         </VStack>
                     </Box>
@@ -136,4 +123,4 @@ function Recipes() {
     );
 }
 
-export default Recipes;
+export default Favorites;
