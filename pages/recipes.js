@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../components/Header";
 import {
     Stack,
@@ -23,6 +23,9 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
+
+
+
 
 function Options() {
     return (
@@ -51,30 +54,22 @@ function Options() {
 }
 
 function RecipesList() {
-    const displayRecipes = [...data];
-    if (displayRecipes.length === 0) {
-        return (
-            <strong>No recipes found!
-                <Link href="/pantry">
-                    <ChakraLink color='teal.500'> Update your pantry ingredients </ChakraLink>
-                </Link>
-                and try again.</strong>
 
-        );
-    }
-    else {
-        return (
-            <VStack>
-                {displayRecipes.map(function (recipe) {
-                    return (
-                        <RecipeCard
-                            recipe={recipe}
-                        />
-                    );
-                })}
-            </VStack>
-        );
-    }
+
+    return (
+        // <VStack>
+        //     {displayRecipes.map(function (recipe) {
+        //         return (
+        //             <RecipeCard
+        //                 recipe={recipe}
+        //             />
+        //         );
+        //     })}
+        // </VStack>
+        <>
+        </>
+    );
+
 }
 
 function RecipeCard({ recipe }) {
@@ -100,7 +95,56 @@ function RecipeCard({ recipe }) {
     );
 }
 
-function Recipes() {
+export const Recipes = () => {
+    useEffect(() => {
+
+
+        let ingredients = [];
+        const herbs = JSON.parse(sessionStorage.getItem('herbs'));
+        const spices = JSON.parse(sessionStorage.getItem('spices'));
+        const proteins = JSON.parse(sessionStorage.getItem('proteins'));
+        const vegetables = JSON.parse(sessionStorage.getItem('vegetables'));
+
+        if(herbs.length!=0){
+            ingredients.push(herbs);
+        }
+        if(spices.length!=0){
+            ingredients.push(spices);
+        }
+        if(proteins.length!=0){
+            ingredients.push(proteins);
+        }
+        if(vegetables.length!=0){
+            ingredients.push(vegetables);
+        }
+        
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "ingredients": ingredients.flat(),
+                "ban": [""]
+            })
+
+
+        };
+
+        //alert(ingredients);
+
+        fetch('http://127.0.0.1:8000/recipe/get_recipe_by_ingredients', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data.success != 0) {
+                alert(JSON.stringify(data));
+            }
+
+        })
+        .catch((error) =>
+            console.log(error));
+
+
+    }, [])
     return (
         <Box>
             <Header />

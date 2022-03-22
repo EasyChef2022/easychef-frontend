@@ -43,20 +43,7 @@ export const Sidebar = () => {
                 Pantry At-A-Glance
             </Heading>
 
-            <Flex flexDirection="row">
-                <InputGroup width="fit-content" mr={4}>
-                    <InputLeftElement
-                        pointerEvents='none'
-                        children={<SearchIcon color='gray.300' />}
-                    />
-                    <Input placeholder='Search Ingredients' />
-                </InputGroup>
-                <Button colorScheme='teal' size='md'>
-                    Add Ingredient
-                </Button>
-
-            </Flex>
-
+            
             <PantryComponent />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>

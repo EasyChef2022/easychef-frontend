@@ -13,11 +13,14 @@ import NextLink from "next/link"
 export const Header = () => {
 
 
-    //Temp idk if this works
+   
     const [username, setUsername] = useState("");
+
+    //Simplify
     useLayoutEffect(() => {
         if (sessionStorage.getItem('username')) {
-            setUsername((sessionStorage.getItem('username')))
+            
+            setUsername(sessionStorage.getItem('username'))
         } else {
             sessionStorage.setItem('username', username)
         }
@@ -112,7 +115,7 @@ export const Header = () => {
                             variant="outline"
                             ml={10}
                             _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-                            onClick={() => { setUsername(""); window.location.reload(false); }}
+                            onClick={() => { sessionStorage.clear(); window.location.reload(false); }}
                         >
                             Sign Out
                         </Button>

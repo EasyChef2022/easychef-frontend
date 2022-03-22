@@ -17,12 +17,86 @@ import {
     Select,
     List,
     Text,
-    LightMode
+    LightMode,
+    FormControl
 } from '@chakra-ui/react';
 import { SearchIcon } from "@chakra-ui/icons";
 import PantryCategory from "../PantryList/PantryCategory";
+import { useState } from 'react';
 
 export const AvailableIngredients = () => {
+
+    const [currentIngredient, setCurrentIngredient] = useState("");
+    const [category, setCategory] = useState("");
+
+
+    const populateSessionStorage = (user) => {
+
+        for (const [key, value] of Object.entries(user)) {
+            if(typeof value === "string"){
+                sessionStorage.setItem(key, value);
+            } else {
+                sessionStorage.setItem(key, JSON.stringify(value));
+            }
+            
+           
+          }
+
+    }
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+
+        if(sessionStorage.getItem('username')==""){
+            alert("Make an account to save ingredients");
+            return;
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "username": sessionStorage.getItem('username'),
+                "token": sessionStorage.getItem('token'),
+                "item": currentIngredient,
+                "type": category
+            })
+
+        };
+
+        const requestUser = {
+            method: 'GET'
+        };
+
+        
+
+
+        fetch('http://127.0.0.1:8000/user/add_pantry', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success != 0) {
+                    
+
+                    fetch('http://127.0.0.1:8000/user/get_user?username='+sessionStorage.getItem('username'), requestUser)
+                    .then(response2 => response2.json())
+                    .then(data2 => {
+                        if (data2.success != 0) {
+                            
+                            populateSessionStorage(data2.user);
+                            this.setState({});
+                        }
+        
+                    })
+                    .catch((error) =>
+                        console.log(error));
+                } else {
+                    alert(JSON.stringify(data));
+                }
+
+            })
+            .catch((error) =>
+                console.log(error));
+    }
+
     return (
         <Box
             marginLeft={4}
@@ -42,54 +116,59 @@ export const AvailableIngredients = () => {
                     <PantryCategory
                         dbname="herbs"
                         catname="Herbs"
-                         />
+                    />
 
                     <PantryCategory
                         dbname="spices"
                         catname="Spices"
-                        />
+                    />
 
                     <PantryCategory
                         dbname="proteins"
                         catname="Proteins"
-                         />
+                    />
 
                     <PantryCategory
                         dbname="vegetables"
                         catname="Vegetables"
-                        />
+                    />
 
                 </List>
-                <VStack width="100%">
-                    <HStack>
-                        <InputGroup size='sm' width='100%'>
-                            <Input
-                                pr='4.5rem'
-                                placeholder='Enter new ingredient'
-                            />
-                            <InputLeftElement>
-                                <SearchIcon color='gray.400' />
-                            </InputLeftElement>
-                        </InputGroup>
-                    </HStack>
-                    <Box>
-                    <LightMode>
-                    <Select
-                    
-                    placeholder="Select category"
-                    >
-                            <option value='herbs'>Herbs</option>
-                            <option value='spices'>Spices</option>
-                            <option value='protein'>Proteins</option>
-                            <option value='vegetables'>Vegetables</option>
-                        </Select>
-                        </LightMode>
-                    </Box>
+                <FormControl>
+                    <form onSubmit={handleSubmit}>
+                    <VStack width="100%">
+                        <HStack>
+                            <InputGroup size='sm' width='100%'>
+                                <Input
+                                    pr='4.5rem'
+                                    placeholder='Enter new ingredient'
+                                    onChange={e => setCurrentIngredient(e.target.value)}
+                                />
+                                <InputLeftElement>
+                                    <SearchIcon color='gray.400' />
+                                </InputLeftElement>
+                            </InputGroup>
+                        </HStack>
+                        <Box>
+                            <LightMode>
+                                <Select
+                                    onChange={e => setCategory(e.target.value)}
+                                    placeholder="Select category"
+                                >
+                                    <option value='herbs'>Herbs</option>
+                                    <option value='spices'>Spices</option>
+                                    <option value='proteins'>Proteins</option>
+                                    <option value='vegetables'>Vegetables</option>
+                                </Select>
+                            </LightMode>
+                        </Box>
 
-                    <Button colorScheme='teal' h='1.75rem'>
-                                Add
-                    </Button>
-                </VStack>
+                        <Button colorScheme='teal' h='1.75rem' type="submit">
+                            Add
+                        </Button>
+                    </VStack>
+                    </form>
+                </FormControl>
             </VStack>
         </Box>
     );

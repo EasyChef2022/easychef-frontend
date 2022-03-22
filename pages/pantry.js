@@ -24,9 +24,6 @@ import {
 
 import Link from "next/link";
 
-import { PantryCategory } from "../components/PantryList/PantryCategory";
-
-import { pantry_data } from "../PantryData";
 
 import { PriorityIngredients } from '../components/PantryPage/PriorityIngredients';
 import { BlockedIngredients } from "../components/PantryPage/BlockedIngredients";
