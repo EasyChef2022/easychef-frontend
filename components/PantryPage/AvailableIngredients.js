@@ -22,13 +22,15 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon } from "@chakra-ui/icons";
 import PantryCategory from "../PantryList/PantryCategory";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const AvailableIngredients = () => {
 
     const [currentIngredient, setCurrentIngredient] = useState("");
     const [category, setCategory] = useState("");
 
+
+    const [checkSignal, setCheckSignal] = useState(true);
 
     const populateSessionStorage = (user) => {
 
@@ -70,19 +72,19 @@ export const AvailableIngredients = () => {
         
 
 
-        fetch('http://127.0.0.1:8000/user/add_pantry', requestOptions)
+        fetch('http://easychef.herokuapp.com/user/add_pantry', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {
                     
 
-                    fetch('http://127.0.0.1:8000/user/get_user?username='+sessionStorage.getItem('username'), requestUser)
+                    fetch('http://easychef.herokuapp.com/user/get_user?username='+sessionStorage.getItem('username'), requestUser)
                     .then(response2 => response2.json())
                     .then(data2 => {
                         if (data2.success != 0) {
                             
                             populateSessionStorage(data2.user);
-                            this.setState({});
+                            setCheckSignal(!checkSignal);
                         }
         
                     })
@@ -116,21 +118,25 @@ export const AvailableIngredients = () => {
                     <PantryCategory
                         dbname="herbs"
                         catname="Herbs"
+                        signal={checkSignal}
                     />
 
                     <PantryCategory
                         dbname="spices"
                         catname="Spices"
+                        signal={checkSignal}
                     />
 
                     <PantryCategory
                         dbname="proteins"
                         catname="Proteins"
+                        signal={checkSignal}
                     />
 
                     <PantryCategory
                         dbname="vegetables"
                         catname="Vegetables"
+                        signal={checkSignal}
                     />
 
                 </List>

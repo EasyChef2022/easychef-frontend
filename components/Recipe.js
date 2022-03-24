@@ -20,7 +20,6 @@ import {
 
 export const Recipe = (props) => {
 
-    console.log(props.data);
     return (
 
         <Flex

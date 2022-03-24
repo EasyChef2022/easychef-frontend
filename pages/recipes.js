@@ -91,7 +91,7 @@ export const Recipes = () => {
 
         //alert(ingredients);
 
-        // fetch('http://127.0.0.1:8000/recipe/get_recipe_by_ingredients', requestOptions)
+        // fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
         // .then(response => response.json())
         // .then(data => {
         //     if (data.success != 0) {

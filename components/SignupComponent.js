@@ -61,14 +61,12 @@ export const SignupComponent = () => {
                 })
 
             };
-            fetch('http://127.0.0.1:8000/user/sign_up', requestOptions)
+            fetch('http://easychef.herokuapp.com/user/sign_up', requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success == 1) {
 
-
-
-                        fetch('http://127.0.0.1:8000/user/sign_in', requestOptions)
+                        fetch('http://easychef.herokuapp.com/user/sign_in', requestOptions)
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success != 0) {

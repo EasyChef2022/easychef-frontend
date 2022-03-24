@@ -32,9 +32,9 @@ export const LoginComponent = () => {
     const [password, setPassword] = useState();
 
 
-    const toggleShowPass = () => {
-        setShowPass(!showPass);
-    }
+    // const toggleShowPass = () => {
+    //     setShowPass(!showPass);
+    // }
 
 
 
@@ -80,7 +80,7 @@ export const LoginComponent = () => {
         };
 
 
-        fetch('http://127.0.0.1:8000/user/sign_in', requestOptions)
+        fetch('http://easychef.herokuapp.com/user/sign_in', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {
@@ -141,7 +141,7 @@ export const LoginComponent = () => {
                                                 size="sm"
                                                 colorScheme="teal"
 
-                                                onClick={toggleShowPass}>
+                                                onClick={() => setShowPass(!showPass)}>
                                                 {showPass ? "Hide" : "Show"}
                                             </Button>
                                         </InputRightElement>
