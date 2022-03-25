@@ -15,23 +15,9 @@ import {
     Icon
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, ArrowDownIcon, ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
-
+import { populateSessionStorage } from "../populateSessionStorage";
 
 export const PantryEntry = (props) => {
-
-   
-    const populateSessionStorage = (user) => {
-
-        for (const [key, value] of Object.entries(user)) {
-            if (typeof value === "string") {
-                sessionStorage.setItem(key, value);
-            } else {
-                sessionStorage.setItem(key, JSON.stringify(value));
-            }
-
-        }
-
-    }
 
 
     const handleSubmit = async function (event, ingredientValue) {

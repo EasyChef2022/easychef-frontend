@@ -92,7 +92,7 @@ export const Recipe = (props) => {
                                Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.
                                </ListItem> */}
                                {props.data.instructions.map((instruction)=>
-                               <ListItem>{instruction}</ListItem>
+                               <ListItem key={instruction}>{instruction}</ListItem>
                                )}
                            </OrderedList>
                        </Box>

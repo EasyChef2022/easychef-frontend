@@ -23,7 +23,7 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import PantryCategory from "../PantryList/PantryCategory";
 import { useEffect, useState } from 'react';
-
+import { populateSessionStorage } from '../populateSessionStorage';
 export const AvailableIngredients = () => {
 
     const [currentIngredient, setCurrentIngredient] = useState("");
@@ -32,19 +32,7 @@ export const AvailableIngredients = () => {
 
     const [checkSignal, setCheckSignal] = useState(true);
 
-    const populateSessionStorage = (user) => {
-
-        for (const [key, value] of Object.entries(user)) {
-            if(typeof value === "string"){
-                sessionStorage.setItem(key, value);
-            } else {
-                sessionStorage.setItem(key, JSON.stringify(value));
-            }
-            
-           
-          }
-
-    }
+    
 
     const handleSubmit = async e => {
         e.preventDefault();
