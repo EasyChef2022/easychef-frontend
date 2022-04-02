@@ -31,11 +31,7 @@ const PantryCategory = (props) => {
                 setCollapsed(true);
             }
         }
-        
     }
-
-    
-
 
     useEffect(() => {
         getData();
@@ -53,10 +49,10 @@ const PantryCategory = (props) => {
 
 
             </HStack>
-            {ingredients.map((ingredient) => (
+            {ingredients.map((ingredient, index) => (
 
-                <Box sx={{ display: collapsed ? "none" : "block" }}>
-                    <PantryEntry ingredientValue={ingredient} category={props.dbname} callBack={getData} />
+                <Box sx={{ display: collapsed ? "none" : "block" }} key={index}>
+                    <PantryEntry ingredientValue={ingredient} category={props.dbname} callBack={getData}/>
                 </Box>
 
             ))}
@@ -65,15 +61,6 @@ const PantryCategory = (props) => {
 
 }
 
-
-PantryCategory.propTypes = {
-    name: PropTypes.string,
-    data: PropTypes.arrayOf(PropTypes.shape({
-        ingredient: PropTypes.string,
-        amount: PropTypes.number,
-        measurement: PropTypes.string
-    }))
-}
 
 
 export default PantryCategory

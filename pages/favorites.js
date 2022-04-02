@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Header } from "../components/Header";
 import {
     Stack,
-    Heading,
     HStack,
     VStack,
     Flex,
@@ -18,106 +17,142 @@ import {
     Link as ChakraLink,
     Spacer,
     Button,
-    Image
+    Image,
+    LightMode,
+    Text,
+    RadioGroup,
+    Radio,
+    Heading
 } from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
+//import { RecipesList } from "../components/RecipePage/RecipesList";
+import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
-function FavoritesList() {
-    const displayRecipes = [...data];
-    if (displayRecipes.length === 0) {
-        return (
-            <strong>No recipes found!
-                <Link href="/pantry">
-                    <ChakraLink color='teal.500'> Update your pantry ingredients </ChakraLink>
-                </Link>
-                and try again.</strong>
 
-        );
+export const Favorites = () => {
+
+    const [displayRecipes, setDisplayRecipes] = useState();
+    const [forceUpdate, setForceUpdate] = useState(false);
+
+
+    
+    useLayoutEffect(()=> {
+
+        
+        console.log("User: " + sessionStorage.getItem("username"));
+        
+        if(displayRecipes==undefined){
+            populateFavorites();
+        }
+        
+
+        console.log(displayRecipes);
+        
+
+    }); 
+
+    useEffect(()=>{
+       
+        //window.location.href = ("/favorites");
+        //setForceUpdate(!forceUpdate);
+    }, [])
+
+    const populateFavorites = () =>{
+        
+        if(sessionStorage.getItem("username")!=""){
+            console.log("Heyo");
+            const favoriteArray = JSON.parse(sessionStorage.getItem('favorite'));
+            let favoriteRecipes = [];
+    
+            favoriteArray.map((id)=>{
+                const requestOptions = {
+                    method: 'GET'
+                };
+                fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_id?id='+id, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != 0) {
+                        //console.log(JSON.stringify(data));
+                        favoriteRecipes.push(data);
+                    }
+    
+                })
+                .catch((error) =>
+                    console.log(error));
+            })
+            //console.log(favoriteRecipes);
+            
+            setDisplayRecipes(favoriteRecipes);
+            //console.log(forceUpdate);
+        } else {
+            console.log("didnt run");
+            console.log("However,");
+            console.log(displayRecipes);
+        }
     }
-    else {
-        return (
-            <VStack>
-                {displayRecipes.map(function (favorite) {
-                    return (
-                        <FavoriteCard
-                            favorite={favorite}
-                        />
-                    );
-                })}
+    
 
-            </VStack>
-        );
-    }
-}
-
-function FavoriteCard({ favorite }) {
-    return (
-        <Box shadow='md' marginLeft={2} marginRight={1} w='100%'
-            paddingBottom={2}>
-            <HStack justifyContent='start' spacing='24px' marginLeft={2}>
-                <Box width='100px'>
-                    <strong>{favorite.name}</strong>
-                    <Image src={`dummy-recipe.jpg`} />
-                </Box>
-                <VStack>
-                    <Box>
-                        <p>{favorite.description}</p>
-                        <p><strong>Cook time:</strong> {favorite.cook_time}</p>
-                        <p><strong>Serving size:</strong> {favorite.serving_size}</p>
-                        <p>Remove from favorite recipes <StarIcon /></p>
-                        <Button size='sm' colorScheme='teal'>Show full recipe</Button>
-                    </Box>
-                </VStack>
-            </HStack>
-        </Box>
-    );
-}
-
-function ButtonBar() {
-    return (
-        <HStack>
-            <Button size='md' colorScheme='teal'>
-                <Link href="/pantry">
-                    <ChakraLink><strong>Go Back to Pantry</strong></ChakraLink>
-                </Link>
-            </Button>
-            <Button size='md' colorScheme='teal'>
-                <Link href="/recipes">
-                    <ChakraLink><strong>Get Recipes</strong></ChakraLink>
-                </Link>
-            </Button>
-        </HStack>
-    );
-}
-
-function Favorites() {
     return (
         <Box>
             <Header />
-            <Flex justifyContent="space-between"
+            <Flex justifyContent="center"
                 flexDirection="row"
-                marginTop={10}
-                h='10'>
-                <HStack marginTop={200}>
-                    <Box>
-                        <VStack>
-                            <Box paddingTop={4}>
-                                <Box align="center" marginRight={4}>
-                                    <Heading size='xl'>
-                                        My Favorite Recipes
-                                    </Heading>
-                                </Box>
-                            </Box>
-                            <ButtonBar />
-                            <Box maxWidth='50%'>
-                                <FavoritesList />
-                            </Box>
+            >
+
+                <VStack mt={5} >
+                    <Heading size='xl'>
+                        My Favorite Recipes
+                    </Heading>
+                    <HStack pt={3}>
+                        {/* <Button onClick={()=>setForceUpdate(!forceUpdate)}>Generate</Button> */}
+                        <Button size='md' colorScheme='teal'>
+                            <Link href="/pantry">
+                                <ChakraLink ><strong>Go Back to Pantry</strong></ChakraLink>
+                            </Link>
+                        </Button>
+                        <Button size='md' colorScheme='teal'>
+                            <Link href="/recipes">
+                                <ChakraLink><strong>Get Recipes</strong></ChakraLink>
+                            </Link>
+                        </Button>
+                    </HStack>
+                
+                <Box >
+                    <VStack>
+                        <VStack alignSelf="flex-start" width="100%">
+                           
+                            {displayRecipes != undefined ? (
+
+                                                         
+                                displayRecipes.length==0 ? (
+                                    <VStack justifyContent="center">
+                                        <Text>No Favorite Recipes</Text>
+
+                                    </VStack>
+                                )
+                                    : (
+                                        displayRecipes.map(function (recipe, index) {
+                                            return (
+                                                <RecipeCard
+                                                    data={recipe}
+                                                    key={index}
+                                                />
+                                            );
+
+                                        }))
+
+                            ) : (
+                                <Text>No Favorite Recipes</Text>
+                            )}
+
                         </VStack>
-                    </Box>
-                </HStack>
+
+                    </VStack>
+                </Box>
+                </VStack>
             </Flex>
         </Box>
     );

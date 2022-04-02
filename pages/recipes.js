@@ -19,7 +19,9 @@ import {
     Button,
     Image,
     LightMode,
-    Text
+    Text,
+    RadioGroup,
+    Radio
 } from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
@@ -32,8 +34,10 @@ import { RecipeCard } from "../components/RecipePage/RecipeCard";
 export const Recipes = () => {
 
     const [displayRecipes, setDisplayRecipes] = useState();
-    
-    const getRecipes = () => {
+
+    const [exact, setExact] = useState("exact");
+
+    const getRecipes = async e => {
 
 
         let ingredients = [];
@@ -68,18 +72,36 @@ export const Recipes = () => {
         };
 
         //alert(ingredients);
+        console.log(exact);
+        if (exact == "exact") {
+            fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_exact_match', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != 0) {
+                        console.log(data);
+                        setDisplayRecipes(data);
+                    }
 
-        fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success != 0) {
-                    setDisplayRecipes(data);
-                }
+                })
+                .catch((error) =>
+                    console.log(error));
 
-            })
-            .catch((error) =>
-                console.log(error));
+            console.log(exact);
+        } else {
+            fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != 0) {
+                        console.log(data);
+                        setDisplayRecipes(data);
+                    }
+                })
+                .catch((error) =>
+                    console.log(error));
 
+
+        }
+        
 
     };
     return (
@@ -87,7 +109,7 @@ export const Recipes = () => {
             <Header />
             <Flex justifyContent="center"
                 flexDirection="row"
-                >
+            >
                 <HStack>
                     <Box >
                         <VStack>
@@ -103,9 +125,15 @@ export const Recipes = () => {
                             >
                                 <HStack>
                                     <Box>
-                                        <Checkbox>Allow recipes with missing ingredients</Checkbox>
+                                        <RadioGroup onChange={setExact} defaultValue="exact">
+                                            <Stack direction="row">
+                                                <Radio value="exact">Can Be Made With Ingredients</Radio>
+                                                <Radio value="contains">Contains Everything In Pantry</Radio>
+                                            </Stack>
+                                        </RadioGroup>
+                                        {/* <Checkbox onChange={(e) => setExact(!e.target.checked)}></Checkbox> */}
                                     </Box>
-                                    <Box>
+                                    {/* <Box>
                                         Max Missing Ingredients
                                         <NumberInput>
                                             <NumberInputField />
@@ -114,7 +142,7 @@ export const Recipes = () => {
                                                 <NumberDecrementStepper />
                                             </NumberInputStepper>
                                         </NumberInput>
-                                    </Box>
+                                    </Box> */}
                                     <Box>
                                         <LightMode>
                                             <Select placeholder='Sort recipes by'>
@@ -125,24 +153,34 @@ export const Recipes = () => {
                                     </Box>
                                 </HStack>
                             </Box>
-                            <VStack alignSelf="flex-start">
+                            <VStack alignSelf="flex-start" width="100%">
+                            <Button onClick={getRecipes} colorScheme={"teal"}>
+                                    Generate New Recipes
+                                </Button>
                                 {displayRecipes != undefined ? (
-                                    displayRecipes.map(function (recipe) {
+
+                                    //(displayRecipes.exact == 1) ? alert("exact found") : alert("general found"),                           
+                                    displayRecipes.result.length == 0 ? (
+                                    <VStack justifyContent="center">
+                                        <Text>No Results Found. Update The Pantry And Try Again</Text>
+                                        
+                                    </VStack>
+                                    ) 
+                                    : (
+                                        displayRecipes.result.map(function (recipe, index) {
                                         return (
                                             <RecipeCard
                                                 data={recipe}
+                                                key={index}
                                             />
                                         );
-                                    })
-                                ) : (
-                                <VStack alignSelf="center">
-                                <Text>No Recipes Generated</Text>
-                                <Button onClick={getRecipes}>
-                                    Generate Now
-                                </Button>
-                                </VStack>
-                                )}
+                                        
+                                    }))
 
+                                ) : (
+                                    <></>
+                                )}
+                                
                             </VStack>
 
                         </VStack>

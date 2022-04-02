@@ -30,6 +30,7 @@ export const Header = () => {
         sessionStorage.setItem('username', username)
     }, [username])
 
+    
 
     return (
         <Flex

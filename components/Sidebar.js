@@ -47,7 +47,7 @@ export const Sidebar = () => {
             <PantryComponent />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>
-                <Link href="../recipes">Get Recipes</Link>
+                <Link href="/recipes">Get Recipes</Link>
             </Button>
         </VStack>
     );

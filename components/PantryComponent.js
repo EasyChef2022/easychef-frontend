@@ -23,21 +23,25 @@ export const PantryComponent = () => {
                     <PantryCategory
                     dbname="herbs"
                     catname="Herbs"
+                    key={"herbs"}
                     />
 
                     <PantryCategory 
                     dbname="spices"
                     catname="Spices"
+                    key={"spices"}
                     />
                     
                     <PantryCategory 
                     dbname="proteins"
                     catname="Proteins"
+                    key={"proteins"}
                     />
 
                     <PantryCategory 
                     dbname="vegetables"
                     catname="Vegetables"
+                    key={"vegetables"}
                     />
 
                 </List>
