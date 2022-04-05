@@ -1,3 +1,5 @@
+
+//Gathers information from the database and puts it into the session storage for quick access
 export const populateSessionStorage = (user) => {
 
     for (const [key, value] of Object.entries(user)) {
