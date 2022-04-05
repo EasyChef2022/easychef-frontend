@@ -17,9 +17,18 @@ import {
 import { ArrowForwardIcon, ArrowDownIcon, ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { populateSessionStorage } from "../populateSessionStorage";
 
+
+/**
+ * 
+ * @param ingredientValue String; The ingredient 
+ * @param category String; The database table for the category
+ * @param callBack void(); Function called in parent once data is collected
+ */
 export const PantryEntry = (props) => {
 
 
+
+    //Function to remove the current ingredient from the sessionStorage and the user pantry
     const handleSubmit = async function (event, ingredientValue) {
         event.preventDefault();
 
@@ -41,7 +50,7 @@ export const PantryEntry = (props) => {
         };
 
 
-
+        //TODO: Remove unecessary DB call
 
         fetch('http://easychef.herokuapp.com/user/remove_pantry', requestOptions)
             .then(response => response.json())
@@ -61,7 +70,7 @@ export const PantryEntry = (props) => {
                         .catch((error) =>
                             console.log(error));
                 } else {
-                    alert(JSON.stringify(data));
+                    console.log(error);
                 }
 
             })

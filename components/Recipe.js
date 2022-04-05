@@ -18,14 +18,20 @@ import {
 import { useEffect, useState } from "react";
 
 
+//Component to format and display a recipe
 
+/**
+ * 
+ * @param data JSON object; An object containing all of the recipe data 
+ * 
+ */
 export const Recipe = (props) => {
 
     const [missingIng, setMissingIng] = useState([]);
     const [availIng, setAvailIng] = useState([]);
 
 
-
+    //Function to scan the ingredients present in the recipe and mark which ones the user currently has/doesn't have
     const getMissingIngredients = () => {
         let missingIngArray = [];
         let foundArray = [];
@@ -78,7 +84,7 @@ export const Recipe = (props) => {
 
     }
 
-
+    //When the component is rendered, or when the data passed in changes, the missingIngredients are recalculated
     useEffect(() => {
         getMissingIngredients();
     }, [props])

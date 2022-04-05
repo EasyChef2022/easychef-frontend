@@ -30,6 +30,7 @@ import { data } from "../RecipeData";
 //import { RecipesList } from "../components/RecipePage/RecipesList";
 import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
+//Recipes Component, collects all ingredients and gets all recipes generated from the backend. Passes information to recipeCards
 
 export const Recipes = () => {
 
@@ -37,6 +38,8 @@ export const Recipes = () => {
 
     const [exact, setExact] = useState("exact");
 
+
+    //Gets all ingredients from all categories, fetches the list of possible recipes from backend based on the current filter
     const getRecipes = async e => {
 
 

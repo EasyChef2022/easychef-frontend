@@ -1,44 +1,28 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Header } from "../components/Header";
 import {
-    Stack,
     HStack,
     VStack,
     Flex,
-    Checkbox,
-    CheckboxGroup,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
     Box,
-    Select,
     Link as ChakraLink,
-    Spacer,
     Button,
-    Image,
-    LightMode,
     Text,
-    RadioGroup,
-    Radio,
     Heading
 } from '@chakra-ui/react';
-import { StarIcon } from "@chakra-ui/icons";
-import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
-import { data } from "../RecipeData";
-//import { RecipesList } from "../components/RecipePage/RecipesList";
 import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
+//The favorites page. Displays a recipeCard for every favorited recipe.
 
 export const Favorites = () => {
 
+    //TODO: Refactor to display recipes smoothly
+
     const [displayRecipes, setDisplayRecipes] = useState();
-    const [forceUpdate, setForceUpdate] = useState(false);
+       
+    //On the component load, call the populateFavorites function if the current list of favorites is undefined. Will rewrite
 
-
-    
     useLayoutEffect(()=> {
 
         
@@ -53,13 +37,7 @@ export const Favorites = () => {
         
 
     }); 
-
-    useEffect(()=>{
-       
-        //window.location.href = ("/favorites");
-        //setForceUpdate(!forceUpdate);
-    }, [])
-
+    //Collect the favorite recipes from the database and populates the sessionStorage. Will rewrite
     const populateFavorites = () =>{
         
         if(sessionStorage.getItem("username")!=""){
@@ -83,14 +61,10 @@ export const Favorites = () => {
                 .catch((error) =>
                     console.log(error));
             })
-            //console.log(favoriteRecipes);
             
             setDisplayRecipes(favoriteRecipes);
-            //console.log(forceUpdate);
         } else {
-            console.log("didnt run");
-            console.log("However,");
-            console.log(displayRecipes);
+            console.log("not signed in");
         }
     }
     
@@ -107,7 +81,7 @@ export const Favorites = () => {
                         My Favorite Recipes
                     </Heading>
                     <HStack pt={3}>
-                        {/* <Button onClick={()=>setForceUpdate(!forceUpdate)}>Generate</Button> */}
+                       
                         <Button size='md' colorScheme='teal'>
                             <Link href="/pantry">
                                 <ChakraLink ><strong>Go Back to Pantry</strong></ChakraLink>
@@ -136,10 +110,11 @@ export const Favorites = () => {
                                     : (
                                         displayRecipes.map(function (recipe, index) {
                                             return (
+                                                <Box key={index}>
                                                 <RecipeCard
                                                     data={recipe}
-                                                    key={index}
                                                 />
+                                                </Box>
                                             );
 
                                         }))

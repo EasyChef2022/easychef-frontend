@@ -14,14 +14,21 @@ import {
 import { StarIcon } from "@chakra-ui/icons";
 import { DeleteIcon } from "@chakra-ui/icons";
 
+
+//The individual component generated for displaying basic recipe information in the main generation.
+
+/**
+ * 
+ * @param data JSON object; contains all of the recipe info.
+ */
 export const RecipeCard = (props) => {
 
 
     const [collapsed, setCollapsed] = useState(true);
     const [isFavorited, setIsFavorited] = useState(0); //0 is not favorited, 1 is favorited, -1 is not signed in
-    const [isBanned, setIsBanned] = useState(0);
+    const [isBanned, setIsBanned] = useState(0); //0 is not banned, 1 is banned, -1 is not signed in
 
-
+    //Checks the sessionStorage to see if a recipe is favorited or banned
     const checkFavorited = () => {
         if(sessionStorage.getItem('username')==""){  //No user signed in
             setIsFavorited(-1);
@@ -45,10 +52,13 @@ export const RecipeCard = (props) => {
         }
     }
 
+    //Updates when isFavorited changes
     useEffect(()=>{
         checkFavorited();
     }, [isFavorited])
 
+
+    //Adds a recipe to either the favorite list or the banned list based on the operation "favorite" or "ban"
     const addFavoriteBan = (operation) => {
        
         if(sessionStorage.getItem('username')==""){
@@ -89,6 +99,7 @@ export const RecipeCard = (props) => {
                 console.log(error));
        
     }
+    //Removes a recipe from either the favorite list or the banned list based on the operation "favorite" or "ban"
 
     const removeFavoriteBan = (operation) => {
 
@@ -120,7 +131,6 @@ export const RecipeCard = (props) => {
                     })
         
                 };
-        
         
                 fetch('http://easychef.herokuapp.com/user/remove_pantry', requestOptions)
                     .then(response => response.json())

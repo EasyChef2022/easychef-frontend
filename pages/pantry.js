@@ -33,7 +33,7 @@ import { DefaultIngredients } from "../components/PantryPage/DefaultIngredients"
 
 
 
-
+//Pantry page, container for AvailableIngredients, DefaultIngredients, PriorityIngredients, and BlockedIngredients
 const PantryPage = () => {
     return (
         <>

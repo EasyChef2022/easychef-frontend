@@ -17,12 +17,23 @@ import { ArrowForwardIcon, ArrowDownIcon, ChevronRightIcon, SmallCloseIcon } fro
 import { PantryEntry } from "./PantryEntry";
 
 
+
+//PantryCategory contains a title
+
+/**
+ * 
+ * @param dbname String; The corresponding database table  
+ * @param catname String; The name of the category to be displayed
+ * @param signal Boolean, optional; Variable passed in, change in variable from parent triggers a redraw
+ * 
+ */
 const PantryCategory = (props) => {
 
     const [collapsed, setCollapsed] = useState(true);
     const [ingredients, setIngredients] = useState([]);
 
 
+    //Parses the session storage to populate the list of ingredients based on the category
     const getData = () => {
         const result = JSON.parse(sessionStorage.getItem(props.dbname));
         if (result != null) {
@@ -33,6 +44,8 @@ const PantryCategory = (props) => {
         }
     }
 
+
+    //Onload, set the data to be displayed. Also, refresh page on signal. Signal sent by parent (AvailableIngredients) when ingredient is added.
     useEffect(() => {
         getData();
     }, [props.signal])
@@ -45,8 +58,6 @@ const PantryCategory = (props) => {
                     <ListIcon as={collapsed ? ArrowForwardIcon : ArrowDownIcon} color='green.500' />
                     {props.catname} ({ingredients?.length})
                 </ListItem>
-
-
 
             </HStack>
             {ingredients.map((ingredient, index) => (

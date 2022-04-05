@@ -11,6 +11,8 @@ import {
 import { ArrowForwardIcon, ChevronRightIcon, ArrowDownIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import PantryCategory from "./PantryList/PantryCategory";
 
+
+//Container to display pantryCategory components. Visible on the sidebar. Simply contains other components and formats them
 export const PantryComponent = () => {
 
 
@@ -23,25 +25,25 @@ export const PantryComponent = () => {
                     <PantryCategory
                     dbname="herbs"
                     catname="Herbs"
-                    key={"herbs"}
+                    
                     />
 
                     <PantryCategory 
                     dbname="spices"
                     catname="Spices"
-                    key={"spices"}
+                    
                     />
                     
                     <PantryCategory 
                     dbname="proteins"
                     catname="Proteins"
-                    key={"proteins"}
+                    
                     />
 
                     <PantryCategory 
                     dbname="vegetables"
                     catname="Vegetables"
-                    key={"vegetables"}
+                    
                     />
 
                 </List>

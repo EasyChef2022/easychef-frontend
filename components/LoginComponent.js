@@ -21,10 +21,10 @@ import { Router } from "next/router";
 import { populateSessionStorage } from "./populateSessionStorage";
 
 
+//The component seen on the login page, handles login forms
 export const LoginComponent = () => {
 
 
-    //TODO: Error handling
 
     const [formError, setFormError] = useState("");
     const [showPass, setShowPass] = useState(false);
@@ -32,12 +32,7 @@ export const LoginComponent = () => {
     const [password, setPassword] = useState();
 
 
-    // const toggleShowPass = () => {
-    //     setShowPass(!showPass);
-    // }
-
-
-
+    //On form submit, do some error checking, and sign the user in if no error
     const handleSubmit = async e => {
         e.preventDefault();
 
@@ -62,7 +57,6 @@ export const LoginComponent = () => {
             })
 
         };
-
 
         fetch('http://easychef.herokuapp.com/user/sign_in', requestOptions)
             .then(response => response.json())

@@ -10,13 +10,15 @@ import {
     HStack
 } from "@chakra-ui/react";
 import NextLink from "next/link"
+
+//The header displayed at the top of the page, contains links and a display of the current username
 export const Header = () => {
 
 
    
     const [username, setUsername] = useState("");
 
-    //Simplify
+    //Function run on component load, displays the username if one is present
     useLayoutEffect(() => {
         if (sessionStorage.getItem('username')) {
             
@@ -25,11 +27,6 @@ export const Header = () => {
             sessionStorage.setItem('username', username)
         }
     }, [])
-
-    useEffect(() => {
-        sessionStorage.setItem('username', username)
-    }, [username])
-
     
 
     return (

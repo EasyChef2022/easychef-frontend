@@ -16,7 +16,7 @@ import { LoginComponent } from '../components/LoginComponent'
 
 const Login = () => {
 
-    
+    //Login page, container for the logincomponent
     return (
         <>
         <Header />

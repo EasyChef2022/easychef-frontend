@@ -16,7 +16,7 @@ import { SignupComponent } from '../components/SignupComponent'
 
 const Signup = () => {
 
-    
+    //Continer for signupComponent
     return (
         <>
         <Header />

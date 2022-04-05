@@ -19,11 +19,11 @@ import {
   
 
 
-  
+  //Main index Page
   const Index = () => {
 
     const [ROTD, setROTD] = useState();
-
+    //Whenever the page loads, it fetches the recipe of the day from the backend
     useEffect(()=>{
 
       const requestOptions = {

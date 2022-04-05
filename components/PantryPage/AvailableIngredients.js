@@ -24,6 +24,8 @@ import { SearchIcon } from "@chakra-ui/icons";
 import PantryCategory from "../PantryList/PantryCategory";
 import { useEffect, useState } from 'react';
 import { populateSessionStorage } from '../populateSessionStorage';
+
+//The Pantry Component which displays current ingredient and allows the user to add more
 export const AvailableIngredients = () => {
 
     const [currentIngredient, setCurrentIngredient] = useState("");
@@ -33,7 +35,7 @@ export const AvailableIngredients = () => {
     const [checkSignal, setCheckSignal] = useState(true);
 
     
-
+    //Function to add an ingredient. Gets the ingredient name from the textbox via currentIngredient, then uses a fetch
     const handleSubmit = async e => {
         e.preventDefault();
 
@@ -59,7 +61,7 @@ export const AvailableIngredients = () => {
 
         
 
-
+        //TODO: Remove unecessary DB call
         fetch('http://easychef.herokuapp.com/user/add_pantry', requestOptions)
             .then(response => response.json())
             .then(data => {
@@ -79,7 +81,7 @@ export const AvailableIngredients = () => {
                     .catch((error) =>
                         console.log(error));
                 } else {
-                    alert(JSON.stringify(data));
+                   console.log(error);
                 }
 
             })

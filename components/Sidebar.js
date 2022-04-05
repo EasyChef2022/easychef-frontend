@@ -32,6 +32,8 @@ import {
 import { PantryComponent } from "./PantryComponent";
 import Link from "next/link";
 
+
+//Class to display the sidebar, simply contains other components
 export const Sidebar = () => {
 
 

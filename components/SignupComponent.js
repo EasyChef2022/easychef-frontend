@@ -19,6 +19,8 @@ import {
 import NextLink from "next/link"
 import { populateSessionStorage } from "./populateSessionStorage";
 
+//The component seen on the signup page, handles signup forms
+
 export const SignupComponent = () => {
 
     const [formError, setFormError] = useState("");
@@ -28,10 +30,8 @@ export const SignupComponent = () => {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
-    const toggleShowPass = () => {
-        setShowPass(!showPass);
-    }
-
+    
+    //On submit, does some basic error checking, makes an account if no error, and signs the user in
     const handleSubmit = async e => {
         e.preventDefault();
         if (password != confirmPassword) {
@@ -57,15 +57,14 @@ export const SignupComponent = () => {
                             .then(data => {
                                 if (data.success != 0) {
 
-                                    // sessionStorage.setItem('username', data.user.username);
-                                    // sessionStorage.setItem('userId', data.user.id);
+                                    
                                     sessionStorage.setItem('token', data.token);
                                     populateSessionStorage(data.user);
 
                                     location.href = '/';
 
                                 } else {
-                                    setFormError("Invalid Username/Password");
+                                    setFormError("Internal Error");
 
                                 }
 
@@ -133,7 +132,7 @@ export const SignupComponent = () => {
                                                 size="sm"
                                                 colorScheme="teal"
 
-                                                onClick={toggleShowPass}>
+                                                onClick={() => setShowPass(!showPass)}>
                                                 {showPass ? "Hide" : "Show"}
                                             </Button>
                                         </InputRightElement>
