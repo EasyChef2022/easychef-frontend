@@ -83,12 +83,12 @@ export const Favorites = () => {
                     <HStack pt={3}>
                        
                         <Button size='md' colorScheme='teal'>
-                            <Link href="/pantry">
+                            <Link href="/pantry" passHref>
                                 <ChakraLink ><strong>Go Back to Pantry</strong></ChakraLink>
                             </Link>
                         </Button>
                         <Button size='md' colorScheme='teal'>
-                            <Link href="/recipes">
+                            <Link href="/recipes" passHref>
                                 <ChakraLink><strong>Get Recipes</strong></ChakraLink>
                             </Link>
                         </Button>

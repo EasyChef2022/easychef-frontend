@@ -65,13 +65,13 @@ const PantryPage = () => {
             <Center>
 
                 <Button colorScheme='teal' size='md'>
-                    <Link href="/recipes">
+                    <Link href="/recipes" passHref>
                         <ChakraLink> <strong>Get Recipes</strong> </ChakraLink>
 
                     </Link>
                 </Button>
                 <Button size='md' colorScheme='teal'>
-                    <Link href="/favorites">
+                    <Link href="/favorites" passHref>
                         <ChakraLink><strong>See favorite recipes</strong></ChakraLink>
                     </Link>
                 </Button>

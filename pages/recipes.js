@@ -116,13 +116,13 @@ export const Recipes = () => {
                 <HStack>
                     <Box >
                         <VStack>
-                            <Box>
-                                <strong>Bought some rice? Just run out of parsley? Want to prioritize that
-                                    salmon that's about to go bad? <Link href='/pantry'>
+                            <Box fontWeight="bold">
+                                <Text>Bought some rice? Just run out of parsley? Want to prioritize that
+                                    salmon that's about to go bad? <Link href='/pantry' passHref>
                                         <ChakraLink color='teal.500'>Go to your pantry
                                             and update it!</ChakraLink>
                                     </Link>
-                                </strong>
+                                </Text>
                             </Box>
                             <Box paddingTop="-4" paddingLeft={4} paddingRight={4} align='self-start'
                             >
