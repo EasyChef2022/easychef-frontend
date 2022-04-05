@@ -118,7 +118,7 @@ export const Recipes = () => {
                         <VStack>
                             <Box fontWeight="bold">
                                 <Text>Bought some rice? Just run out of parsley? Want to prioritize that
-                                    salmon that's about to go bad? <Link href='/pantry' passHref>
+                                    salmon that&#39;s about to go bad? <Link href='/pantry' passHref>
                                         <ChakraLink color='teal.500'>Go to your pantry
                                             and update it!</ChakraLink>
                                     </Link>
