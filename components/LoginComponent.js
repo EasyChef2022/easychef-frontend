@@ -58,7 +58,7 @@ export const LoginComponent = () => {
 
         };
 
-        fetch('http://easychef.herokuapp.com/user/sign_in', requestOptions)
+        fetch('https://easychef.herokuapp.com/user/sign_in', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {

@@ -77,7 +77,7 @@ export const Recipes = () => {
         //alert(ingredients);
         console.log(exact);
         if (exact == "exact") {
-            fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_exact_match', requestOptions)
+            fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_exact_match', requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != 0) {
@@ -91,7 +91,7 @@ export const Recipes = () => {
 
             console.log(exact);
         } else {
-            fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
+            fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != 0) {

@@ -90,7 +90,7 @@ export const RecipeCard = (props) => {
         };
 
 
-        fetch('http://easychef.herokuapp.com/user/add_pantry', requestOptions)
+        fetch('https://easychef.herokuapp.com/user/add_pantry', requestOptions)
             .then(response => response.json())
             .then(data => {
 
@@ -132,7 +132,7 @@ export const RecipeCard = (props) => {
         
                 };
         
-                fetch('http://easychef.herokuapp.com/user/remove_pantry', requestOptions)
+                fetch('https://easychef.herokuapp.com/user/remove_pantry', requestOptions)
                     .then(response => response.json())
                     .then(data => {
                         

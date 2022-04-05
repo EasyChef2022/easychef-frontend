@@ -49,7 +49,7 @@ export const Favorites = () => {
                 const requestOptions = {
                     method: 'GET'
                 };
-                fetch('http://easychef.herokuapp.com/recipe/get_recipe_by_id?id='+id, requestOptions)
+                fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_id?id='+id, requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success != 0) {

@@ -32,7 +32,7 @@ import {
     };
 
 
-    fetch('http://easychef.herokuapp.com/recipe/get_recipe_of_today', requestOptions)
+    fetch('https://easychef.herokuapp.com/recipe/get_recipe_of_today', requestOptions)
         .then(response => response.json())
         .then(data => {
             setROTD(data);

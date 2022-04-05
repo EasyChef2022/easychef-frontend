@@ -52,12 +52,12 @@ export const PantryEntry = (props) => {
 
         //TODO: Remove unecessary DB call
 
-        fetch('http://easychef.herokuapp.com/user/remove_pantry', requestOptions)
+        fetch('https://easychef.herokuapp.com/user/remove_pantry', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {
 
-                    fetch('http://easychef.herokuapp.com/user/get_user?username=' + sessionStorage.getItem('username'), requestUser)
+                    fetch('https://easychef.herokuapp.com/user/get_user?username=' + sessionStorage.getItem('username'), requestUser)
                         .then(response2 => response2.json())
                         .then(data2 => {
                             if (data2.success != 0) {
