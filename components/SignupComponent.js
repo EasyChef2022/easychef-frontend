@@ -73,7 +73,7 @@ export const SignupComponent = () => {
                                 console.log(error));
 
                     } else {
-                        alert(JSON.stringify(data));
+                        //alert(JSON.stringify(data));
                         if (data.message == "duplicate key value violates unique constraint") {
                             setFormError("Username is Currently in Use");
                         } else if (data.message == "Invalid username") {
