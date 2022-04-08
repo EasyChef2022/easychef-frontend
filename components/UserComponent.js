@@ -16,7 +16,11 @@ import { DeleteIcon } from "@chakra-ui/icons";
 export const UserComponent = () => {
 
     const [displayWarning, setDisplayWarning] = useState(false);
+    const [username, setUsername] = useState();
 
+    useEffect(()=>{
+        setUsername(sessionStorage.getItem('username'));
+    })
     //On form submit, do some error checking, and sign the user in if no error
 
     const deleteAccount = () => {
