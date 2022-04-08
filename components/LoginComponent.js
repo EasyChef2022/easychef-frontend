@@ -3,16 +3,13 @@ import {
     Box,
     Stack,
     Heading,
-    Flex,
     Text,
     Button,
-    Spacer,
     FormControl,
     InputGroup,
     Input,
     InputRightElement,
     Link,
-    Center,
     FormErrorMessage
 
 } from "@chakra-ui/react";
@@ -57,14 +54,12 @@ export const LoginComponent = () => {
             })
 
         };
-
+        //Sends a Database request to log the user in, then populates the session storage with the user's info and directs to the homepage
         fetch('https://easychef.herokuapp.com/user/sign_in', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {
 
-                    // sessionStorage.setItem('username', data.user.username);
-                    // sessionStorage.setItem('userId', data.user.id);
                     sessionStorage.setItem('token', data.token);
                     populateSessionStorage(data.user);
 

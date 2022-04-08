@@ -3,16 +3,12 @@ import {
     Box,
     Stack,
     Heading,
-    Flex,
     Text,
     Button,
-    Spacer,
     FormControl,
     InputGroup,
     Input,
     InputRightElement,
-    Link,
-    Center,
     FormErrorMessage
 
 } from "@chakra-ui/react";
@@ -30,7 +26,7 @@ export const SignupComponent = () => {
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
 
-    
+
     //On submit, does some basic error checking, makes an account if no error, and signs the user in
     const handleSubmit = async e => {
         e.preventDefault();
@@ -47,17 +43,19 @@ export const SignupComponent = () => {
                 })
 
             };
+
+            //Sign the user up
             fetch('https://easychef.herokuapp.com/user/sign_up', requestOptions)
                 .then(response => response.json())
                 .then(data => {
                     if (data.success == 1) {
-
+                        //If the user was signed up sucessfully, sign them in, populate the storage, and redirect to home page
                         fetch('https://easychef.herokuapp.com/user/sign_in', requestOptions)
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success != 0) {
 
-                                    
+
                                     sessionStorage.setItem('token', data.token);
                                     populateSessionStorage(data.user);
 

@@ -1,15 +1,6 @@
 import {
     Link as ChakraLink,
-    Text,
-    Flex,
-    Code,
-    List,
-    ListIcon,
-    ListItem,
-    Spacer,
-    Box,
-    Divider,
-    Stack
+    Flex
 } from '@chakra-ui/react'
 import { Header } from '../components/Header'
 import { SignupComponent } from '../components/SignupComponent'

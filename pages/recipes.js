@@ -5,19 +5,10 @@ import {
     HStack,
     VStack,
     Flex,
-    Checkbox,
-    CheckboxGroup,
-    NumberInput,
-    NumberInputField,
-    NumberInputStepper,
-    NumberIncrementStepper,
-    NumberDecrementStepper,
     Box,
     Select,
     Link as ChakraLink,
-    Spacer,
     Button,
-    Image,
     LightMode,
     Text,
     RadioGroup,
@@ -78,6 +69,7 @@ export const Recipes = () => {
         //alert(ingredients);
         console.log(exact);
         if (exact == "exact") {
+            //If we are looking for recipes that we can make, use this call
             fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_exact_match', requestOptions)
                 .then(response => response.json())
                 .then(data => {
@@ -91,6 +83,7 @@ export const Recipes = () => {
 
             console.log(exact);
         } else {
+            //If we are looking for recipes containing all ingredients owned, use this call
             fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_ingredients', requestOptions)
                 .then(response => response.json())
                 .then(data => {

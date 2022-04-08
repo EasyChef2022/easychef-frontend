@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
-    Stack,
     HStack,
     VStack,
-    Select,
     Link as ChakraLink,
     Spacer,
     Button,
@@ -30,6 +28,7 @@ export const RecipeCard = (props) => {
     const [isFavorited, setIsFavorited] = useState(0); //0 is not favorited, 1 is favorited, -1 is not signed in
     const [isBanned, setIsBanned] = useState(0); //0 is not banned, 1 is banned, -1 is not signed in
 
+
     //Checks the sessionStorage to see if a recipe is favorited or banned
     const checkFavorited = () => {
         if (sessionStorage.getItem('username') == "") {  //No user signed in
@@ -37,6 +36,7 @@ export const RecipeCard = (props) => {
             setIsBanned(-1);
 
         } else {
+            //If the recipe is found in either the favorite array or ban array, update the isFavorited and isBanned to display different buttons on the recipe card
             let favArray = JSON.parse(sessionStorage.getItem('favorite'));
             const hasValue = Object.values(favArray).includes(String(props.data.id));
             if (hasValue) {
@@ -69,6 +69,7 @@ export const RecipeCard = (props) => {
         }
         let favArray = JSON.parse(sessionStorage.getItem(operation));
         const hasValue = Object.values(favArray).includes(String(props.data.id));
+        //Checks to see if the recipe is already in the favorited array before pushing
         if (!hasValue) {
             favArray.push(String(props.data.id));
             sessionStorage.setItem(operation, JSON.stringify(favArray));
@@ -91,24 +92,18 @@ export const RecipeCard = (props) => {
 
         };
 
-
+        //Add the new recipe to either the favorite list or the ban list
         fetch('https://easychef.herokuapp.com/user/add_pantry', requestOptions)
             .then(response => response.json())
-            .then(data => {
-
-            })
             .catch((error) =>
                 console.log(error));
 
-        //console.log("Added Array");
-        //console.log(favArray);
-
-        // if(operation=="ban"){
-        //     removeFavoriteBan("favorite");
-        // }
+        //Update the sessionStorage with the new favorited/banned recipes
         populateFavorites(favArray);
 
     }
+
+
     //Removes a recipe from either the favorite list or the banned list based on the operation "favorite" or "ban"
 
     const removeFavoriteBan = (operation) => {
@@ -122,6 +117,7 @@ export const RecipeCard = (props) => {
         let favArray = JSON.parse(sessionStorage.getItem(operation));
 
         let index = 0;
+        //Following code checks to see if the recipe exists in the favorite/banned array. If it does, it is removed 
         for (const [key, value] of Object.entries(favArray)) {
             if (value == props.data.id) {
                 favArray.splice(index, 1);
@@ -139,7 +135,7 @@ export const RecipeCard = (props) => {
                         "type": operation
                     })
                 };
-
+                //Database call to remove the recipe from the requested array
                 fetch('https://easychef.herokuapp.com/user/remove_pantry', requestOptions)
                     .then(response => response.json())
                     .catch((error) =>
@@ -149,9 +145,7 @@ export const RecipeCard = (props) => {
             index++;
         }
 
-
-        //console.log("Removed Array");
-        //console.log(favArray);
+        //Update the sessionStorage with the new favorited/banned recipes
         populateFavorites(favArray);
     }
 
@@ -175,6 +169,7 @@ export const RecipeCard = (props) => {
                             <HStack mt={3} mr={3}>
                                 <Button size='sm' colorScheme='teal' onClick={() => setCollapsed(!collapsed)}>List Ingredients</Button>
                                 <Box sx={{ display: collapsed ? "none" : "block" }}>
+                                    {/* Displays all of the ingredients when clickd */}
                                     {props.data.ingredients.map((ingredient, index) => <Text key={index}>{ingredient}</Text>
 
                                     )}
@@ -182,6 +177,7 @@ export const RecipeCard = (props) => {
                                 <NextLink href={"/recipeDisplay?id="+props.data.id}>
                                     <Button ml={5} size='sm' colorScheme='teal'>Show full recipe</Button>
                                 </NextLink>
+                                {/* This code displays the correct buttons depending on favorited status, as well as the correct operation when it is clicked.*/}
                                 {isFavorited != -1 ? (
 
                                     isFavorited == 1 ? (

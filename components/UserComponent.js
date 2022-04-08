@@ -3,26 +3,23 @@ import {
     Box,
     Stack,
     Heading,
-    Flex,
     Text,
-    Button,
-
-    Center,
-    FormErrorMessage
+    Button
 
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-//The component seen on the login page, handles login forms
+
+//The component seen on the user settings page
 export const UserComponent = () => {
 
     const [displayWarning, setDisplayWarning] = useState(false);
     const [username, setUsername] = useState();
 
-    useEffect(()=>{
+    useEffect(() => {
         setUsername(sessionStorage.getItem('username'));
     })
-    //On form submit, do some error checking, and sign the user in if no error
 
+    //Simple function to delete account
     const deleteAccount = () => {
         const username = sessionStorage.getItem('username');
         const token = sessionStorage.getItem('token');
@@ -36,7 +33,7 @@ export const UserComponent = () => {
             })
         };
 
-
+        //First, sign user out, then delete the user, then redirect to home
         sessionStorage.clear();
         fetch('https://easychef.herokuapp.com/user/delete_user', requestOptions)
             .then(response => response.json())
@@ -49,7 +46,7 @@ export const UserComponent = () => {
         <>
             <Stack
                 flexDir="column"
-                //mb="2"
+
                 justifyContent="center"
                 alignItems="center"
 

@@ -1,19 +1,14 @@
 import {
     Flex,
     Text,
-    Grid,
-    GridItem,
     Heading,
     Image,
     Box,
-    Spacer,
-    List,
     UnorderedList,
     ListItem,
     VStack,
     HStack,
-    OrderedList,
-    Divider
+    OrderedList
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
@@ -41,6 +36,9 @@ export const Recipe = (props) => {
         const proteins = JSON.parse(sessionStorage.getItem('proteins'));
         const vegetables = JSON.parse(sessionStorage.getItem('vegetables'));
 
+
+        //Merge all ingredients into one cumulative array
+
         if (herbs != null && herbs.length != 0) {
             ingredients.push(herbs);
         }
@@ -56,13 +54,13 @@ export const Recipe = (props) => {
 
 
         if (props != undefined) {
+            //The following code loops thru the ingredients the recipe uses and marks which ones are in pantry/aren't in pantry
             let found = false;
             props.data?.ingredients?.map((ingredient, index) => {
                 ingredients.flat().map((ingredientInPantry) => {
-                    //console.log("Does " + ingredient + " contain " + ingredientInPantry + "?");
                     if (ingredient.toLowerCase().includes(ingredientInPantry.toLowerCase()) && found == false) {
                         console.log("Match found, " + ingredientInPantry);
-                        if(!foundArray.includes(ingredientInPantry)){
+                        if (!foundArray.includes(ingredientInPantry)) {
                             foundArray.push(ingredientInPantry);
                         }
                         found = true;
@@ -108,7 +106,7 @@ export const Recipe = (props) => {
                                 <Box justifySelf="right" fontWeight="bold" >Ingredients</Box>
                                 <UnorderedList spacing={3} pt={5}>
 
-
+                                    {/* Map out the ingredients */}
                                     {props.data.ingredients.map((ingredient, index) =>
                                         <ListItem key={"recipeIngredient" + index}>{ingredient}</ListItem>
                                     )}
@@ -120,15 +118,7 @@ export const Recipe = (props) => {
                                     Directions
                                 </Box>
                                 <OrderedList spacing={5} pt={5}>
-                                    {/* <ListItem>
-                               Preheat oven to 350 degrees F (175 degrees C).
-                               </ListItem>
-                               <ListItem>
-                               Cream together the butter, white sugar, and brown sugar until smooth. Beat in the eggs one at a time, then stir in the vanilla. Dissolve baking soda in hot water. Add to batter along with salt. Stir in flour, chocolate chips, and nuts. Drop by large spoonfuls onto ungreased pans.
-                               </ListItem>
-                               <ListItem>
-                               Bake for about 10 minutes in the preheated oven, or until edges are nicely browned.
-                               </ListItem> */}
+                                    {/* Map out the instructions */}
                                     {props.data.instructions.map((instruction, index) =>
                                         <ListItem key={"instruction" + index}>{instruction}</ListItem>
                                     )}
@@ -139,16 +129,18 @@ export const Recipe = (props) => {
                     </VStack>
                     <VStack height="100%" width="30%" >
                         <Image width={350} pl={4} src={props.data.photo_url}></Image>
-                        <Box  justifySelf="center">
+                        <Box justifySelf="center">
                             <Text fontSize="xl" mt={10}>Missing Ingredients: </Text>
                             <UnorderedList spacing={4} >
-                            {missingIng.map((ingredientFound, index) =>
+                                {/* Map out the missing ingredients */}
+                                {missingIng.map((ingredientFound, index) =>
                                     <ListItem key={"avail" + index}>{ingredientFound}</ListItem>
                                 )}
-                                
+
                             </UnorderedList>
                             <Text fontSize="xl" mt={3}>Available Ingredients: </Text>
                             <UnorderedList spacing={4} alignSelf="flex-start">
+                                {/* Map out the available ingredients */}
                                 {availIng.map((ingredientFound, index) =>
                                     <ListItem key={"avail" + index}>{ingredientFound}</ListItem>
                                 )}
@@ -157,7 +149,10 @@ export const Recipe = (props) => {
                     </VStack>
 
                 </HStack>
-            ) : (<Text>Loading...</Text>)}
+            ) : (
+
+                <Text>Loading...</Text>
+            )}
 
         </Flex>
     );

@@ -20,7 +20,7 @@ import {
     LightMode
 } from '@chakra-ui/react';
 import { SearchIcon } from "@chakra-ui/icons";
-//Currently no database functionality implemented
+//Currently no functionality implemented, but will maintain this code for completion in future.
 
 export const DefaultIngredients = () => {
     return (

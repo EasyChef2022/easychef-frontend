@@ -1,20 +1,16 @@
 
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import PropTypes, { array, string } from 'prop-types';
+import React from "react";
 
 import {
-    Flex,
     Text,
     Spacer,
-    List,
     ListItem,
     ListIcon,
     HStack,
     Box,
-    Link as ChakraLink,
-    Icon
+    Link as ChakraLink
 } from "@chakra-ui/react";
-import { ArrowForwardIcon, ArrowDownIcon, ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
+import { ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { populateSessionStorage } from "../populateSessionStorage";
 
 
@@ -56,6 +52,8 @@ export const PantryEntry = (props) => {
             .then(response => response.json())
             .then(data => {
                 if (data.success != 0) {
+                    
+                    //This call fetches the new user data to repopulate the session storage. In future, will refactor to udpate session storage automatically
 
                     fetch('https://easychef.herokuapp.com/user/get_user?username=' + sessionStorage.getItem('username'), requestUser)
                         .then(response2 => response2.json())

@@ -1,34 +1,11 @@
 import React from "react";
 import {
-    Box,
     VStack,
     Heading,
-    Flex,
-    Text,
     Button,
-    useDisclosure,
-    Input,
-    InputGroup,
-    List,
-    ListIcon,
-    ListItem,
-    InputLeftElement,
-    Spacer,
-    Icon,
-    Divider,
-    HStack
+    Divider
 } from "@chakra-ui/react";
-import {
-    SearchIcon,
-    SmallAddIcon,
-    ArrowForwardIcon,
-    ArrowDownIcon,
-    ArrowRightIcon,
-    StarIcon,
-    SmallCloseIcon,
-    MinusIcon,
-    ChevronRightIcon,
-} from "@chakra-ui/icons";
+
 import { PantryComponent } from "./PantryComponent";
 import Link from "next/link";
 
@@ -45,7 +22,7 @@ export const Sidebar = () => {
                 Pantry At-A-Glance
             </Heading>
 
-            
+
             <PantryComponent />
             <Divider />
             <Button mt={1} colorScheme='teal' size='lg'>

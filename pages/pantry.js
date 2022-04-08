@@ -5,18 +5,8 @@ import {
     Flex,
     Box,
     HStack,
-    VStack,
-    Spacer,
-    Checkbox,
-    CheckboxGroup,
     Button,
-    ButtonGroup,
-    Input,
-    InputGroup,
-    InputRightElement,
-    InputLeftElement,
     Link as ChakraLink,
-    Select,
     Center
 } from '@chakra-ui/react';
 
@@ -48,6 +38,7 @@ const PantryPage = () => {
                     marginTop={4}>
                         <AvailableIngredients />
                     
+                    {/* The following blocks are pantry features that can be implemented at a later date. */}
                     {/* <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <DefaultIngredients />
@@ -56,10 +47,10 @@ const PantryPage = () => {
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <PriorityIngredients />
                     </Box> */}
-                    <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
+                    {/* <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <BlockedIngredients />
-                    </Box>
+                    </Box> */}
                 </HStack>
             </Flex>
             <Center>

@@ -1,21 +1,12 @@
 import {
     Link as ChakraLink,
-    Text,
-    Flex,
-    Code,
-    List,
-    ListIcon,
-    ListItem,
-    Spacer,
-    Box,
-    Divider,
-    Stack
+    Flex
 } from '@chakra-ui/react'
 import { Header } from '../components/Header'
 import { UserComponent } from '../components/UserComponent'
 const UserPage = () => {
 
-    //Login page, container for the logincomponent
+    //Page to display some user settings. Currently only contains deletion
     return (
         <>
         <Header />

@@ -1,24 +1,16 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
-import PropTypes, { array, string } from 'prop-types';
+import React, { useEffect, useState } from "react";
 
 import {
-    Flex,
-    Text,
-    Spacer,
-    List,
     ListItem,
     ListIcon,
     HStack,
     Box,
-    Link as ChakraLink,
-    Icon
+    Link as ChakraLink
 } from "@chakra-ui/react";
-import { ArrowForwardIcon, ArrowDownIcon, ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, ArrowDownIcon } from "@chakra-ui/icons";
 import { PantryEntry } from "./PantryEntry";
 
 
-
-//PantryCategory contains a title
 
 /**
  * 
@@ -60,6 +52,7 @@ const PantryCategory = (props) => {
                 </ListItem>
 
             </HStack>
+            {/* This creates a new entry for every ingredient in the list provided by the database */}
             {ingredients.map((ingredient, index) => (
 
                 <Box sx={{ display: collapsed ? "none" : "block" }} key={index}>

@@ -20,7 +20,7 @@ import {
 
 
 
-  //Main index Page
+  //Page to display recipes from the recipe generator
   const RecipeDisplay = () => {
       
 
@@ -30,7 +30,7 @@ import {
         const requestOptions = {
             method: 'GET'
         };
-
+        //Fetches the recipe data based on the id passed in via url
         fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_id?id=' + query.id, requestOptions)
         .then(response => response.json())
         .then(data => {
@@ -55,7 +55,6 @@ import {
       <Flex flexDirection="row">
         <Text>{query.name}</Text>
         {recipe==undefined ? (<Text>Loading Recipe...</Text>):(<Recipe data={recipe}/>)}
-        {/* <Recipe data={ROTD}/> */}
 
         <Spacer />
         <Stack direction="row">
