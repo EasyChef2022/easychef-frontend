@@ -18,9 +18,10 @@ export const UserComponent = () => {
     const [displayWarning, setDisplayWarning] = useState(false);
 
     //On form submit, do some error checking, and sign the user in if no error
-    const username = sessionStorage.getItem('username');
-    const token = sessionStorage.getItem('token');
+
     const deleteAccount = () => {
+        const username = sessionStorage.getItem('username');
+        const token = sessionStorage.getItem('token');
 
         const requestOptions = {
             method: 'POST',
