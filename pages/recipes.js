@@ -75,7 +75,15 @@ export const Recipes = () => {
                 .then(data => {
                     if (data.success != 0) {
                         console.log(data);
-                        setDisplayRecipes(data);
+
+                        //Only return if exact
+                        if(data.exact==1){
+                            setDisplayRecipes(data);
+                            
+                        } else {
+                            setDisplayRecipes();
+                        }
+                        
                     }
                 })
                 .catch((error) =>
@@ -95,9 +103,7 @@ export const Recipes = () => {
                 .catch((error) =>
                     console.log(error));
 
-
         }
-        
 
     };
     return (

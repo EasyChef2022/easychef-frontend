@@ -45,10 +45,10 @@ export const AvailableIngredients = () => {
         }
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer '+ sessionStorage.getItem('token') },
             body: JSON.stringify({
                 "username": sessionStorage.getItem('username'),
-                "token": sessionStorage.getItem('token'),
+                
                 "item": currentIngredient,
                 "type": category
             })

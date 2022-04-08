@@ -26,10 +26,9 @@ export const UserComponent = () => {
 
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer '+ sessionStorage.getItem('token')  },
             body: JSON.stringify({
-                "username": username,
-                "token": token
+                "username": username
             })
         };
 
