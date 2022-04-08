@@ -33,8 +33,8 @@ const PantryPage = () => {
                     My Pantry
                 </Heading>
             </Box>
-            <Flex justifyContent='space-around'>
-                <HStack spacing={20} align='stretch' alignItems='baseline' display='flex'
+            <Flex  justifyContent="center">
+                <HStack spacing={20} align='center' alignItems='center' display='flex' minWidth="50vh"
                     marginTop={4}>
                         <AvailableIngredients />
                     

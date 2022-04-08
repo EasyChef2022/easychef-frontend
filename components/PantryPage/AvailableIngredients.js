@@ -100,7 +100,8 @@ export const AvailableIngredients = () => {
             paddingRight={4}
             paddingTop={4}
             paddingBottom={4}
-            width="40vh">
+            
+            width="100%">
 
             <Heading size='md'>Available Ingredients</Heading>
             <VStack spacing={5} alignItems='flex-start' marginTop={2} width="100%">
