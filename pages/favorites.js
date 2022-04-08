@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import {
     HStack,
@@ -21,52 +21,12 @@ export const Favorites = () => {
 
     const [displayRecipes, setDisplayRecipes] = useState();
        
-    //On the component load, call the populateFavorites function if the current list of favorites is undefined. Will rewrite
 
-    useLayoutEffect(()=> {
-
-        
-        console.log("User: " + sessionStorage.getItem("username"));
-        
-        if(displayRecipes==undefined){
-            populateFavorites();
-        }
-        
-
-        console.log(displayRecipes);
-        
-
-    }); 
-    //Collect the favorite recipes from the database and populates the sessionStorage. Will rewrite
-    const populateFavorites = () =>{
-        
-        if(sessionStorage.getItem("username")!=""){
-            console.log("Heyo");
-            const favoriteArray = JSON.parse(sessionStorage.getItem('favorite'));
-            let favoriteRecipes = [];
+    useEffect(()=> {
+        setDisplayRecipes(JSON.parse(sessionStorage.getItem('favRecipes')));
     
-            favoriteArray.map((id)=>{
-                const requestOptions = {
-                    method: 'GET'
-                };
-                fetch('https://easychef.herokuapp.com/recipe/get_recipe_by_id?id='+id, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success != 0) {
-                        //console.log(JSON.stringify(data));
-                        favoriteRecipes.push(data);
-                    }
+    }, []); 
     
-                })
-                .catch((error) =>
-                    console.log(error));
-            })
-            
-            setDisplayRecipes(favoriteRecipes);
-        } else {
-            console.log("not signed in");
-        }
-    }
     
 
     return (

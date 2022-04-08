@@ -48,14 +48,14 @@ const PantryPage = () => {
                     marginTop={4}>
                         <AvailableIngredients />
                     
-                    <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
+                    {/* <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <DefaultIngredients />
                     </Box>
                     <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <PriorityIngredients />
-                    </Box>
+                    </Box> */}
                     <Box marginLeft={4} borderWidth='2px' borderRadius='1g' shadow='md' marginBottom={4}
                         paddingLeft={4} paddingRight={4} paddingTop={4} paddingBottom={4}>
                         <BlockedIngredients />
@@ -64,7 +64,7 @@ const PantryPage = () => {
             </Flex>
             <Center>
 
-                <Button colorScheme='teal' size='md'>
+                <Button colorScheme='teal' size='md' mr={3}>
                     <Link href="/recipes" passHref>
                         <ChakraLink> <strong>Get Recipes</strong> </ChakraLink>
 

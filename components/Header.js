@@ -10,7 +10,7 @@ import {
     HStack
 } from "@chakra-ui/react";
 import NextLink from "next/link"
-
+import { SettingsIcon } from "@chakra-ui/icons";
 //The header displayed at the top of the page, contains links and a display of the current username
 export const Header = () => {
 
@@ -109,14 +109,18 @@ export const Header = () => {
                                 Welcome, {username}
                             </Text>
                         </Box>
+                        <NextLink href="/userPage" >
+                        <SettingsIcon _hover={{ cursor: "pointer" }} />
+                        </NextLink>
                         <Button
                             variant="outline"
                             ml={10}
                             _hover={{ bg: "teal.700", borderColor: "teal.700" }}
-                            onClick={() => { sessionStorage.clear(); window.location.reload(false); }}
+                            onClick={() => { sessionStorage.clear();  location.href = '/'; }}
                         >
                             Sign Out
                         </Button>
+                        
                     </HStack>
                 </Box>
             </Flex>

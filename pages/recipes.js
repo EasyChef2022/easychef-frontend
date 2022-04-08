@@ -27,7 +27,6 @@ import { StarIcon } from "@chakra-ui/icons";
 import { Sidebar } from "../components/Sidebar";
 import Link from "next/link";
 import { data } from "../RecipeData";
-//import { RecipesList } from "../components/RecipePage/RecipesList";
 import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
 //Recipes Component, collects all ingredients and gets all recipes generated from the backend. Passes information to recipeCards
@@ -38,6 +37,7 @@ export const Recipes = () => {
 
     const [exact, setExact] = useState("exact");
 
+    const [sortMethod, setSortMethod] = useState("name");
 
     //Gets all ingredients from all categories, fetches the list of possible recipes from backend based on the current filter
     const getRecipes = async e => {
@@ -68,7 +68,8 @@ export const Recipes = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 "ingredients": ingredients.flat(),
-                "ban": [0]
+                "ban": [0],
+                "sort": sortMethod
             })
 
 
@@ -84,7 +85,6 @@ export const Recipes = () => {
                         console.log(data);
                         setDisplayRecipes(data);
                     }
-
                 })
                 .catch((error) =>
                     console.log(error));
@@ -134,23 +134,18 @@ export const Recipes = () => {
                                                 <Radio value="contains">Contains Everything In Pantry</Radio>
                                             </Stack>
                                         </RadioGroup>
-                                        {/* <Checkbox onChange={(e) => setExact(!e.target.checked)}></Checkbox> */}
+                                       
                                     </Box>
-                                    {/* <Box>
-                                        Max Missing Ingredients
-                                        <NumberInput>
-                                            <NumberInputField />
-                                            <NumberInputStepper>
-                                                <NumberIncrementStepper />
-                                                <NumberDecrementStepper />
-                                            </NumberInputStepper>
-                                        </NumberInput>
-                                    </Box> */}
+                                    
                                     <Box>
                                         <LightMode>
-                                            <Select placeholder='Sort recipes by'>
-                                                <option value='option1'>Cook time</option>
-                                                <option value='option3'>Serving size</option>
+                                            <Select 
+                                             onChange={e => setSortMethod(e.target.value)}
+                                             >
+                                                <option value='name'>Name</option>
+                                                <option value='time'>Cook time</option>
+                                                {/* <option value='rating'>Rating</option> */}
+                                                <option value='complexity'>Complexity</option>
                                             </Select>
                                         </LightMode>
                                     </Box>
@@ -161,8 +156,7 @@ export const Recipes = () => {
                                     Generate New Recipes
                                 </Button>
                                 {displayRecipes != undefined ? (
-
-                                    //(displayRecipes.exact == 1) ? alert("exact found") : alert("general found"),                           
+                         
                                     displayRecipes.result.length == 0 ? (
                                     <VStack justifyContent="center">
                                         <Text>No Results Found. Update The Pantry And Try Again</Text>
@@ -177,13 +171,11 @@ export const Recipes = () => {
                                                 key={index}
                                             />
                                         );
-                                        
                                     }))
-
                                 ) : (
                                     <></>
                                 )}
-                                
+                                 
                             </VStack>
 
                         </VStack>
