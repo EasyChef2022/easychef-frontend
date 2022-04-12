@@ -25,70 +25,85 @@ import PantryCategory from "../PantryList/PantryCategory";
 import { useEffect, useState } from 'react';
 import { populateSessionStorage } from '../populateSessionStorage';
 
+import { Autocomplete, Option } from 'chakra-ui-simple-autocomplete';
+import { ingredients } from '../../public/ingredientList';
+import { data } from '../../RecipeData';
+
 //The Pantry Component which displays current ingredient and allows the user to add more
 export const AvailableIngredients = () => {
 
-    const [currentIngredient, setCurrentIngredient] = useState("");
+
     const [category, setCategory] = useState("");
-
-
     const [checkSignal, setCheckSignal] = useState(true);
 
-    
-    //Function to add an ingredient. Gets the ingredient name from the textbox via currentIngredient, then uses a fetch
-    const handleSubmit = async e => {
+    const [result, setResult] = useState([]);
+
+    useEffect(() => {
+        console.log("Refreshing Page");
+    }, [checkSignal]);
+
+
+
+    //Adds a callback function to handleSubmit in order to refresh the page
+
+    const submitContainer = async e => {
+        e.preventDefault();
+        //console.log("Signal: " + checkSignal);
+        handleSubmit(e, function(){
+            console.log("Ack");
+            setCheckSignal(!checkSignal);
+            setResult([]);
+        });
+    }
+
+    //Function to add an ingredient. Gets list of ingredients added from the autocomplete, then adds each one in a fetch loop
+    const handleSubmit = async (e, _callback) => {
         e.preventDefault();
 
-        if(sessionStorage.getItem('username')==""){
+
+        if (sessionStorage.getItem('username') == "") {
             alert("Make an account to save ingredients");
             return;
         }
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer '+ sessionStorage.getItem('token') },
-            body: JSON.stringify({
-                "username": sessionStorage.getItem('username'),
-                
-                "item": currentIngredient,
-                "type": category
-            })
 
-        };
+        if (category == "") {
+            alert("Select a category to add ingredients to");
+            return;
+        }
+        for (const [key, value] of Object.entries(result)) {
+            console.log("Adding " + value.label);
+            let requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'authorization': 'Bearer ' + sessionStorage.getItem('token') },
+                body: JSON.stringify({
+                    "username": sessionStorage.getItem('username'),
 
-        const requestUser = {
-            method: 'GET'
-        };
+                    "item": value.label,
+                    "type": category
+                })
 
-        
+            };
+            console.log("Fetching " + value.label);
+            let a = JSON.parse(sessionStorage.getItem(category));
+            await fetch('https://easychef.herokuapp.com/user/add_pantry', requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success != 0) {
 
-        //TODO: Remove unecessary DB call
-        fetch('https://easychef.herokuapp.com/user/add_pantry', requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success != 0) {
-                    
+                        a.push(data.item);
 
-                    fetch('https://easychef.herokuapp.com/user/get_user?username='+sessionStorage.getItem('username'), requestUser)
-                    .then(response2 => response2.json())
-                    .then(data2 => {
-                        if (data2.success != 0) {
-                            
-                            populateSessionStorage(data2.user);
-                            setCheckSignal(!checkSignal);
-                        }
-        
-                    })
-                    .catch((error) =>
-                        console.log(error));
-                } else {
-                   console.log(error);
-                }
+                    }
 
-            })
-            .catch((error) =>
-                console.log(error));
+                })
+                .catch((error) =>
+                    console.log(error));
+            console.log("Setting Storage");
+            sessionStorage.setItem(category, JSON.stringify(a));
+            
+        }
+        _callback();
+
     }
-
     return (
         <Box
             marginLeft={4}
@@ -100,7 +115,7 @@ export const AvailableIngredients = () => {
             paddingRight={4}
             paddingTop={4}
             paddingBottom={4}
-            
+
             width="100%">
 
             <Heading size='md'>Available Ingredients</Heading>
@@ -132,10 +147,10 @@ export const AvailableIngredients = () => {
 
                 </List>
                 <FormControl>
-                    <form onSubmit={handleSubmit}>
-                    <VStack width="100%">
-                        <HStack>
-                            <InputGroup size='sm' width='100%'>
+                    <form onSubmit={submitContainer}>
+                        <VStack width="100%">
+                            <HStack>
+                                {/* <InputGroup size='sm' width='100%'>
                                 <Input
                                     pr='4.5rem'
                                     placeholder='Enter new ingredient'
@@ -144,26 +159,36 @@ export const AvailableIngredients = () => {
                                 <InputLeftElement>
                                     <SearchIcon color='gray.400' />
                                 </InputLeftElement>
-                            </InputGroup>
-                        </HStack>
-                        <Box>
-                            <LightMode>
-                                <Select
-                                    onChange={e => setCategory(e.target.value)}
-                                    placeholder="Select category"
-                                >
-                                    <option value='herbs'>Herbs</option>
-                                    <option value='spices'>Spices</option>
-                                    <option value='proteins'>Proteins</option>
-                                    <option value='vegetables'>Vegetables</option>
-                                </Select>
-                            </LightMode>
-                        </Box>
+                            </InputGroup> */}
+                                <LightMode>
+                                    <Autocomplete
+                                        colorScheme="twitter"
+                                        options={ingredients}
+                                        result={result}
+                                        setResult={(ingredients) => setResult(ingredients)}
+                                        placeholder={"Enter new Ingredient"}
+                                        allowCreation={false}
+                                    />
+                                </LightMode>
+                            </HStack>
+                            <Box>
+                                <LightMode>
+                                    <Select
+                                        onChange={e => setCategory(e.target.value)}
+                                        placeholder="Select category"
+                                    >
+                                        <option value='herbs'>Herbs</option>
+                                        <option value='spices'>Spices</option>
+                                        <option value='proteins'>Proteins</option>
+                                        <option value='vegetables'>Vegetables</option>
+                                    </Select>
+                                </LightMode>
+                            </Box>
 
-                        <Button colorScheme='teal' h='1.75rem' type="submit">
-                            Add
-                        </Button>
-                    </VStack>
+                            <Button colorScheme='teal' h='1.75rem' type="submit">
+                                Add
+                            </Button>
+                        </VStack>
                     </form>
                 </FormControl>
             </VStack>

@@ -12,15 +12,14 @@
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
+    "chakra-ui-simple-autocomplete": "^1.0.0",
     "framer-motion": "^6.2.8",
     "next": "^12.1.0",
     "prop-types": "^15.8.1",
-
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.2"
-
   },
   "devDependencies": {
     "cors": "^2.8.5",
