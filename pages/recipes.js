@@ -66,7 +66,7 @@ export const Recipes = () => {
 
         };
 
-        //alert(ingredients);
+        console.log(ingredients.flat());
         console.log(exact);
         if (exact == "exact") {
             //If we are looking for recipes that we can make, use this call
