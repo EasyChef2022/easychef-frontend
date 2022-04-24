@@ -22,8 +22,6 @@ const AvailableIngredients = () => {
 
 
 	const [category, setCategory] = useState("");
-	const [checkSignal, setCheckSignal] = useState(true);
-
 	const [result, setResult] = useState([]);
 
 	useEffect(() => {
