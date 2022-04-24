@@ -2,8 +2,8 @@ import {
     Link as ChakraLink,
     Flex
 } from '@chakra-ui/react'
-import { Header } from '../components/Header'
-import { SignupComponent } from '../components/SignupComponent'
+import Header from '../components/Header'
+import SignupComponent from '../components/SignupComponent'
 
 const Signup = () => {
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import {
     Stack,
     HStack,
@@ -15,14 +15,12 @@ import {
     Radio
 } from '@chakra-ui/react';
 import { StarIcon } from "@chakra-ui/icons";
-import { Sidebar } from "../components/Sidebar";
+import Sidebar from "../components/Sidebar";
 import Link from "next/link";
-import { data } from "../RecipeData";
-import { RecipeCard } from "../components/RecipePage/RecipeCard";
+import RecipeCard from "../components/RecipePage/RecipeCard";
 
 //Recipes Component, collects all ingredients and gets all recipes generated from the backend. Passes information to recipeCards
-
-export const Recipes = () => {
+const Recipes = () => {
 
     const [displayRecipes, setDisplayRecipes] = useState();
 

@@ -11,8 +11,8 @@ import {
     Divider,
     Stack
 } from '@chakra-ui/react'
-import { Header } from '../components/Header'
-import { LoginComponent } from '../components/LoginComponent'
+import Header from '../components/Header'
+import LoginComponent from '../components/LoginComponent'
 
 const Login = () => {
 

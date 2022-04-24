@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import {
     HStack,
     VStack,
@@ -11,11 +11,11 @@ import {
     Heading
 } from '@chakra-ui/react';
 import Link from "next/link";
-import { RecipeCard } from "../components/RecipePage/RecipeCard";
+import RecipeCard from "../components/RecipePage/RecipeCard";
 
 //The favorites page. Displays a recipeCard for every favorited recipe.
 
-export const Favorites = () => {
+const Favorites = () => {
 
     //TODO: Refactor to display recipes smoothly
 

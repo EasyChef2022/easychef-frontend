@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "../components/Header";
+import Header from "../components/Header";
 import {
     Heading,
     Flex,
@@ -15,10 +15,10 @@ import {
 import Link from "next/link";
 
 
-import { PriorityIngredients } from '../components/PantryPage/PriorityIngredients';
-import { BlockedIngredients } from "../components/PantryPage/BlockedIngredients";
-import { AvailableIngredients } from '../components/PantryPage/AvailableIngredients';
-import { DefaultIngredients } from "../components/PantryPage/DefaultIngredients";
+//import { PriorityIngredients } from '../components/PantryPage/PriorityIngredients';
+//import { BlockedIngredients } from "../components/PantryPage/BlockedIngredients";
+import AvailableIngredients from '../components/PantryPage/AvailableIngredients';
+//import { DefaultIngredients } from "../components/PantryPage/DefaultIngredients";
 
 
 

@@ -13,9 +13,9 @@ import {
     Divider,
     Stack
   } from '@chakra-ui/react'
-  import { Header } from '../components/Header'
-  import { Recipe } from '../components/Recipe'
-  import { Sidebar } from '../components/Sidebar'
+  import Header from '../components/Header'
+  import Recipe from '../components/Recipe'
+  import Sidebar from '../components/Sidebar'
   
 
 
