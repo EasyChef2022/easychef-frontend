@@ -29,7 +29,7 @@ const AvailableIngredients = () => {
 	}, [checkSignal]);
 
 
-    const [checkSignal, setCheckSignal] = useState(true);
+	const [checkSignal, setCheckSignal] = useState(true);
 
 	//Adds a callback function to handleSubmit in order to refresh the page
 
