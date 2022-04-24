@@ -24,6 +24,6 @@ Once this is completed, you can install the backend from the [EasyChef2022/back-
 
 ## How to modify:
 
-# Frontend
+### Frontend
 Add new components in the /components folder, add new pages in the /pages folder. All other folders are NextJS boilerplate.
 
