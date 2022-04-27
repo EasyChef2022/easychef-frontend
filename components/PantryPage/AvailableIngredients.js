@@ -12,7 +12,7 @@ import {
 import PantryCategory from "../PantryList/PantryCategory";
 import { useEffect, useState } from "react";
 
-import { Autocomplete, Option } from "chakra-ui-simple-autocomplete";
+import { Autocomplete } from "chakra-ui-simple-autocomplete";
 import { ingredients } from "../../public/ingredientList";
 
 //The Pantry Component which displays current ingredient and allows the user to add more
