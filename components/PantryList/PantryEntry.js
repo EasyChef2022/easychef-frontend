@@ -2,13 +2,13 @@
 import React from "react";
 
 import {
-    Text,
-    Spacer,
-    ListItem,
-    ListIcon,
-    HStack,
-    Box,
-    Link as ChakraLink
+	Text,
+	Spacer,
+	ListItem,
+	ListIcon,
+	HStack,
+	Box,
+	Link as ChakraLink
 } from "@chakra-ui/react";
 import { ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { populateSessionStorage } from "../populateSessionStorage";
@@ -24,73 +24,73 @@ export const PantryEntry = (props) => {
 
 
 
-    //Function to remove the current ingredient from the sessionStorage and the user pantry
-    const handleSubmit = async function (event, ingredientValue) {
-        event.preventDefault();
+	//Function to remove the current ingredient from the sessionStorage and the user pantry
+	const handleSubmit = async function (event, ingredientValue) {
+		event.preventDefault();
 
 
-        const requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 
-            'authorization': 'Bearer '+ sessionStorage.getItem('token') 
-            },
-            body: JSON.stringify({
-                "username": sessionStorage.getItem('username'),
-                "item": ingredientValue,
-                "type": props.category
-            })
+		const requestOptions = {
+			method: "POST",
+			headers: { "Content-Type": "application/json", 
+				"authorization": "Bearer "+ sessionStorage.getItem("token") 
+			},
+			body: JSON.stringify({
+				"username": sessionStorage.getItem("username"),
+				"item": ingredientValue,
+				"type": props.category
+			})
 
-        };
+		};
 
-        const requestUser = {
-            method: 'GET'
-        };
+		const requestUser = {
+			method: "GET"
+		};
 
 
-        //TODO: Remove unecessary DB call
+		//TODO: Remove unecessary DB call
 
-        fetch('https://easychef.herokuapp.com/user/remove_pantry', requestOptions)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success != 0) {
+		fetch("https://easychef.herokuapp.com/user/remove_pantry", requestOptions)
+			.then(response => response.json())
+			.then(data => {
+				if (data.success != 0) {
                     
-                    //This call fetches the new user data to repopulate the session storage. In future, will refactor to udpate session storage automatically
+					//This call fetches the new user data to repopulate the session storage. In future, will refactor to udpate session storage automatically
 
-                    fetch('https://easychef.herokuapp.com/user/get_user?username=' + sessionStorage.getItem('username'), requestUser)
-                        .then(response2 => response2.json())
-                        .then(data2 => {
-                            if (data2.success != 0) {
+					fetch("https://easychef.herokuapp.com/user/get_user?username=" + sessionStorage.getItem("username"), requestUser)
+						.then(response2 => response2.json())
+						.then(data2 => {
+							if (data2.success != 0) {
 
-                                populateSessionStorage(data2.user);
-                                props.callBack();
-                            }
+								populateSessionStorage(data2.user);
+								props.callBack();
+							}
 
-                        })
-                        .catch((error) =>
-                            console.log(error));
-                } else {
-                    console.log(error);
-                }
+						})
+						.catch((error) =>
+							console.log(error));
+				} else {
+					console.log(error);
+				}
 
-            })
-            .catch((error) =>
-                console.log(error));
-    }
+			})
+			.catch((error) =>
+				console.log(error));
+	};
 
-    return (
+	return (
         
-        <Box>
-            <form>
-                <ListItem pl="4vw" fontSize={20}>
-                    <HStack width="100%" minWidth="150" maxWidth="250">
-                        <ListIcon as={ChevronRightIcon} color='green.500' />
-                        <Text>{props.ingredientValue}</Text>
-                        <Spacer />
-                        <ListIcon as={SmallCloseIcon} color='green.500' sx={{ cursor: 'pointer' }} onClick={(event) => handleSubmit(event, props.ingredientValue)} />
-                    </HStack>
-                </ListItem>
+		<Box>
+			<form>
+				<ListItem pl="4vw" fontSize={20}>
+					<HStack width="100%" minWidth="150" maxWidth="250">
+						<ListIcon as={ChevronRightIcon} color='green.500' />
+						<Text>{props.ingredientValue}</Text>
+						<Spacer />
+						<ListIcon as={SmallCloseIcon} color='green.500' sx={{ cursor: "pointer" }} onClick={(event) => handleSubmit(event, props.ingredientValue)} />
+					</HStack>
+				</ListItem>
 
-            </form>
-        </Box>
-    );
-}
+			</form>
+		</Box>
+	);
+};

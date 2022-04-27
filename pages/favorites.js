@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import {
-    HStack,
-    VStack,
-    Flex,
-    Box,
-    Link as ChakraLink,
-    Button,
-    Text,
-    Heading
-} from '@chakra-ui/react';
+	HStack,
+	VStack,
+	Flex,
+	Box,
+	Link as ChakraLink,
+	Button,
+	Text,
+	Heading
+} from "@chakra-ui/react";
 import Link from "next/link";
 import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
@@ -17,80 +17,80 @@ import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
 export const Favorites = () => {
 
-    //TODO: Refactor to display recipes smoothly
+	//TODO: Refactor to display recipes smoothly
 
-    const [displayRecipes, setDisplayRecipes] = useState();
+	const [displayRecipes, setDisplayRecipes] = useState();
        
 
-    useEffect(()=> {
-        setDisplayRecipes(JSON.parse(sessionStorage.getItem('favRecipes')));
+	useEffect(()=> {
+		setDisplayRecipes(JSON.parse(sessionStorage.getItem("favRecipes")));
     
-    }, []); 
+	}, []); 
     
     
 
-    return (
-        <Box>
-            <Header />
-            <Flex justifyContent="center"
-                flexDirection="row"
-            >
+	return (
+		<Box>
+			<Header />
+			<Flex justifyContent="center"
+				flexDirection="row"
+			>
 
-                <VStack mt={5} >
-                    <Heading size='xl'>
+				<VStack mt={5} >
+					<Heading size='xl'>
                         My Favorite Recipes
-                    </Heading>
-                    <HStack pt={3}>
+					</Heading>
+					<HStack pt={3}>
                        
-                        <Button size='md' colorScheme='teal'>
-                            <Link href="/pantry" passHref>
-                                <ChakraLink ><strong>Go Back to Pantry</strong></ChakraLink>
-                            </Link>
-                        </Button>
-                        <Button size='md' colorScheme='teal'>
-                            <Link href="/recipes" passHref>
-                                <ChakraLink><strong>Get Recipes</strong></ChakraLink>
-                            </Link>
-                        </Button>
-                    </HStack>
+						<Button size='md' colorScheme='teal'>
+							<Link href="/pantry" passHref>
+								<ChakraLink ><strong>Go Back to Pantry</strong></ChakraLink>
+							</Link>
+						</Button>
+						<Button size='md' colorScheme='teal'>
+							<Link href="/recipes" passHref>
+								<ChakraLink><strong>Get Recipes</strong></ChakraLink>
+							</Link>
+						</Button>
+					</HStack>
                 
-                <Box >
-                    <VStack>
-                        <VStack alignSelf="flex-start" width="100%">
+					<Box >
+						<VStack>
+							<VStack alignSelf="flex-start" width="100%">
                            
-                            {displayRecipes != undefined ? (
+								{displayRecipes != undefined ? (
 
                                                          
-                                displayRecipes.length==0 ? (
-                                    <VStack justifyContent="center">
-                                        <Text>No Favorite Recipes</Text>
+									displayRecipes.length==0 ? (
+										<VStack justifyContent="center">
+											<Text>No Favorite Recipes</Text>
 
-                                    </VStack>
-                                )
-                                    : (
-                                        displayRecipes.map(function (recipe, index) {
-                                            return (
-                                                <Box key={index}>
-                                                <RecipeCard
-                                                    data={recipe}
-                                                />
-                                                </Box>
-                                            );
+										</VStack>
+									)
+										: (
+											displayRecipes.map(function (recipe, index) {
+												return (
+													<Box key={index}>
+														<RecipeCard
+															data={recipe}
+														/>
+													</Box>
+												);
 
-                                        }))
+											}))
 
-                            ) : (
-                                <Text>No Favorite Recipes</Text>
-                            )}
+								) : (
+									<Text>No Favorite Recipes</Text>
+								)}
 
-                        </VStack>
+							</VStack>
 
-                    </VStack>
-                </Box>
-                </VStack>
-            </Flex>
-        </Box>
-    );
-}
+						</VStack>
+					</Box>
+				</VStack>
+			</Flex>
+		</Box>
+	);
+};
 
 export default Favorites;
