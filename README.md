@@ -22,11 +22,6 @@ To install both the Frontend and Backend, first install the Frontend by followin
 Once this is completed, you can install the backend from the [EasyChef2022/back-end](https://github.com/EasyChef2022/back-end) repository from Github.
 
 
-How to run:
-
-npm start dev
-
-
 How to modify:
 
 Add new components in the /components folder, add new pages in the /pages folder. All other folders are NextJS boilerplate.
