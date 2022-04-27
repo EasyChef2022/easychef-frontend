@@ -1,5 +1,5 @@
 import { ChakraProvider, ColorModeProvider } from "@chakra-ui/react";
-
+import PropTypes from "prop-types"; 
 import theme from "../styles/theme";
 
 function MyApp({ Component, pageProps }) {
@@ -15,5 +15,9 @@ function MyApp({ Component, pageProps }) {
 		</ChakraProvider>
 	);
 }
+MyApp.propTypes = {
+	Component: PropTypes.func,
+	pageProps: PropTypes.object
+};
 
 export default MyApp;

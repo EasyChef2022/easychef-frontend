@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
 
-	Link as ChakraLink,
-	Text,
 	Flex,
-	Code,
-	List,
-	ListIcon,
-	ListItem,
 	Spacer,
-	Box,
 	Divider,
 	Stack
 } from "@chakra-ui/react";

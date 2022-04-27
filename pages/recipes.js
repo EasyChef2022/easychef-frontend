@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Header } from "../components/Header";
 import {
 	Stack,
@@ -14,10 +14,8 @@ import {
 	RadioGroup,
 	Radio
 } from "@chakra-ui/react";
-import { StarIcon } from "@chakra-ui/icons";
-import { Sidebar } from "../components/Sidebar";
+
 import Link from "next/link";
-import { data } from "../RecipeData";
 import { RecipeCard } from "../components/RecipePage/RecipeCard";
 
 //Recipes Component, collects all ingredients and gets all recipes generated from the backend. Passes information to recipeCards
@@ -32,7 +30,7 @@ export const Recipes = () => {
 
 	//Gets all ingredients from all categories, fetches the list of possible recipes from backend based on the current filter
 	const getRecipes = async e => {
-
+		e.preventDefault();
 
 		let ingredients = [];
 		const herbs = JSON.parse(sessionStorage.getItem("herbs"));

@@ -1,5 +1,4 @@
 import {
-	Link as ChakraLink,
 	Flex
 } from "@chakra-ui/react";
 import { Header } from "../components/Header";

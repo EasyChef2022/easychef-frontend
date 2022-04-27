@@ -15,10 +15,10 @@ import {
 import Link from "next/link";
 
 
-import { PriorityIngredients } from "../components/PantryPage/PriorityIngredients";
-import { BlockedIngredients } from "../components/PantryPage/BlockedIngredients";
+//import { PriorityIngredients } from "../components/PantryPage/PriorityIngredients";
+//import { BlockedIngredients } from "../components/PantryPage/BlockedIngredients";
 import { AvailableIngredients } from "../components/PantryPage/AvailableIngredients";
-import { DefaultIngredients } from "../components/PantryPage/DefaultIngredients";
+//import { DefaultIngredients } from "../components/PantryPage/DefaultIngredients";
 
 
 
