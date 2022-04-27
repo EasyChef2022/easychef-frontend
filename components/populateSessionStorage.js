@@ -34,7 +34,6 @@ export const populateSessionStorage = (user) => {
 	for (const [key, value] of Object.entries(user)) {
 		console.log(key);
 		if (key === "favorite") {
-			console.log("OOGABOOGA");
 			console.log(value);
 			populateFavorites(value);
 		}
