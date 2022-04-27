@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
 import {
 	ListItem,
 	ListIcon,
 	HStack,
-	Box,
-	Link as ChakraLink
+	Box
 } from "@chakra-ui/react";
 import { ArrowForwardIcon, ArrowDownIcon } from "@chakra-ui/icons";
-import { PantryEntry } from "./PantryEntry";
+import PantryEntry from "./PantryEntry";
 
 
 
@@ -65,6 +65,10 @@ const PantryCategory = (props) => {
 
 };
 
-
+PantryCategory.propTypes = {
+	dbname: PropTypes.string,
+	signal: PropTypes.bool,
+	catname: PropTypes.string
+};
 
 export default PantryCategory;

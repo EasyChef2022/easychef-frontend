@@ -7,8 +7,7 @@ import {
 	ListItem,
 	ListIcon,
 	HStack,
-	Box,
-	Link as ChakraLink
+	Box
 } from "@chakra-ui/react";
 import { ChevronRightIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import { populateSessionStorage } from "../populateSessionStorage";
@@ -20,7 +19,7 @@ import { populateSessionStorage } from "../populateSessionStorage";
  * @param category String; The database table for the category
  * @param callBack void(); Function called in parent once data is collected
  */
-export const PantryEntry = (props) => {
+const PantryEntry = (props) => {
 
 
 
@@ -94,3 +93,5 @@ export const PantryEntry = (props) => {
 		</Box>
 	);
 };
+
+export default PantryEntry;

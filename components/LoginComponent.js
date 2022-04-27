@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
 	Box,
 	Stack,
@@ -14,7 +14,6 @@ import {
 
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { Router } from "next/router";
 import { populateSessionStorage } from "./populateSessionStorage";
 
 

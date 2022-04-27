@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 import Link from "next/link";
-import { RecipeCard } from "../components/RecipePage/RecipeCard";
+import RecipeCard from "../components/RecipePage/RecipeCard";
 
 //Recipes Component, collects all ingredients and gets all recipes generated from the backend. Passes information to recipeCards
 

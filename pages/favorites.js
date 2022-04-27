@@ -11,7 +11,7 @@ import {
 	Heading
 } from "@chakra-ui/react";
 import Link from "next/link";
-import { RecipeCard } from "../components/RecipePage/RecipeCard";
+import RecipeCard from "../components/RecipePage/RecipeCard";
 
 //The favorites page. Displays a recipeCard for every favorited recipe.
 

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+
 import {
 	HStack,
 	VStack,
-	Link as ChakraLink,
 	Spacer,
 	Button,
 	Image,
@@ -21,7 +22,7 @@ import NextLink from "next/link";
  * 
  * @param data JSON object; contains all of the recipe info.
  */
-export const RecipeCard = (props) => {
+const RecipeCard = (props) => {
 
 
 	const [collapsed, setCollapsed] = useState(true);
@@ -194,3 +195,10 @@ export const RecipeCard = (props) => {
 		</>
 	);
 };
+
+RecipeCard.propTypes = {
+	data: PropTypes.object,
+
+};
+
+export default RecipeCard;
