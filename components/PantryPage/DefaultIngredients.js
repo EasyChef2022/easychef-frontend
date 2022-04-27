@@ -1,23 +1,13 @@
 import {
 	Heading,
-	Flex,
 	Box,
-	HStack,
 	VStack,
-	Spacer,
 	Checkbox,
-	CheckboxGroup,
 	Button,
-	ButtonGroup,
 	Input,
 	InputGroup,
 	InputRightElement,
-	InputLeftElement,
-	Link as ChakraLink,
-	Select,
-	List,
-	Text,
-	LightMode
+	InputLeftElement
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 //Currently no functionality implemented, but will maintain this code for completion in future.

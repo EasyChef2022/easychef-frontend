@@ -1,33 +1,19 @@
 import {
 	Heading,
-	Flex,
 	Box,
 	HStack,
 	VStack,
-	Spacer,
-	Checkbox,
-	CheckboxGroup,
 	Button,
-	ButtonGroup,
-	Input,
-	InputGroup,
-	InputRightElement,
-	InputLeftElement,
-	Link as ChakraLink,
 	Select,
 	List,
-	Text,
 	LightMode,
 	FormControl
 } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
 import PantryCategory from "../PantryList/PantryCategory";
 import { useEffect, useState } from "react";
-import { populateSessionStorage } from "../populateSessionStorage";
 
 import { Autocomplete, Option } from "chakra-ui-simple-autocomplete";
 import { ingredients } from "../../public/ingredientList";
-import { data } from "../../RecipeData";
 
 //The Pantry Component which displays current ingredient and allows the user to add more
 export const AvailableIngredients = () => {

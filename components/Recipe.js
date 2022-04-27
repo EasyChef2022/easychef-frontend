@@ -20,7 +20,7 @@ import { useEffect, useState } from "react";
  * @param data JSON object; An object containing all of the recipe data 
  * 
  */
-export const Recipe = (props) => {
+const Recipe = (props) => {
 
 	const [missingIng, setMissingIng] = useState([]);
 	const [availIng, setAvailIng] = useState([]);
@@ -157,3 +157,8 @@ export const Recipe = (props) => {
 		</Flex>
 	);
 };
+Recipe.propTypes = {
+	data: PropTypes.object,
+
+};
+export default Recipe;

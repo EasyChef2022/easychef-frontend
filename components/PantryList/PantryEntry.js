@@ -1,6 +1,6 @@
 
 import React from "react";
-
+import PropTypes from "prop-types";
 import {
 	Text,
 	Spacer,
@@ -67,8 +67,6 @@ const PantryEntry = (props) => {
 						})
 						.catch((error) =>
 							console.log(error));
-				} else {
-					console.log(error);
 				}
 
 			})
@@ -92,6 +90,11 @@ const PantryEntry = (props) => {
 			</form>
 		</Box>
 	);
+};
+PantryEntry.propTypes = {
+	category: PropTypes.string,
+	callBack: PropTypes.func,
+	ingredientValue: PropTypes.string,
 };
 
 export default PantryEntry;
