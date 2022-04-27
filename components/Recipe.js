@@ -58,7 +58,7 @@ const Recipe = (props) => {
 		if (props != undefined) {
 			//The following code loops thru the ingredients the recipe uses and marks which ones are in pantry/aren't in pantry
 			let found = false;
-			props.data?.ingredients?.map((ingredient, index) => {
+			props.data?.ingredients?.map((ingredient) => {
 				ingredients.flat().map((ingredientInPantry) => {
 					if (ingredient.toLowerCase().includes(ingredientInPantry.toLowerCase()) && found == false) {
 						console.log("Match found, " + ingredientInPantry);

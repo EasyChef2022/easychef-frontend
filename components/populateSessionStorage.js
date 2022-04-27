@@ -8,7 +8,7 @@ export const populateFavorites = (favoriteArray) => {
 	};
 
 	for (const [key2, value2] of Object.entries(favoriteArray)) {
-		//console.log(value2);
+		console.log(key2);
 		fetch("https://easychef.herokuapp.com/recipe/get_recipe_by_id?id=" + value2, requestOptions)
 			.then(response => response.json())
 			.then(data => {

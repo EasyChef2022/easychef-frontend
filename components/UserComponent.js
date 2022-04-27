@@ -22,7 +22,6 @@ export const UserComponent = () => {
 	//Simple function to delete account
 	const deleteAccount = () => {
 		const username = sessionStorage.getItem("username");
-		const token = sessionStorage.getItem("token");
 
 		const requestOptions = {
 			method: "POST",

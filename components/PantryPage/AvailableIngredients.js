@@ -57,7 +57,7 @@ export const AvailableIngredients = () => {
 			return;
 		}
 		for (const [key, value] of Object.entries(result)) {
-			console.log("Adding " + value.label);
+			console.log("Adding " + value.label + " " + key);
 			let requestOptions = {
 				method: "POST",
 				headers: { "Content-Type": "application/json", "authorization": "Bearer " + sessionStorage.getItem("token") },

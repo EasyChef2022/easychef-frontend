@@ -119,6 +119,7 @@ const RecipeCard = (props) => {
 		let index = 0;
 		//Following code checks to see if the recipe exists in the favorite/banned array. If it does, it is removed 
 		for (const [key, value] of Object.entries(favArray)) {
+			console.log(key);
 			if (value == props.data.id) {
 				favArray.splice(index, 1);
 				sessionStorage.setItem(operation, JSON.stringify(favArray));
