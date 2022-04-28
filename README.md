@@ -42,6 +42,8 @@ Modify the USER and PASSWORD fields to your local psql values.
 
 Once this is done, run the following commands:
 
+`pip3 install requirements.txt`
+
 `python3 manage.py makemigrations`
 
 `python3 manage.py migrate`
