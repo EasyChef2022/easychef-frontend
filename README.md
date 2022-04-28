@@ -26,7 +26,7 @@ Once this is completed, you can install the backend from the [EasyChef2022/back-
 `postgresql`
 
 First, modify the database settings in back-end/EasyChef/settings. You will see a block of code similar to the following:
-`DATABASES = {
+```DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'easychef',
@@ -36,13 +36,16 @@ First, modify the database settings in back-end/EasyChef/settings. You will see 
         'PORT': '5432',
     }
 }
-`
+```
 
 Modify the USER and PASSWORD fields to your local psql values.
 
 Once this is done, run the following commands:
+
 `python3 manage.py makemigrations`
+
 `python3 manage.py migrate`
+
 `python3 manage.py runserver`
 
 Once the final line is run, the server will be active at 127.0.0.1:8000.
