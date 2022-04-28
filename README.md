@@ -21,6 +21,32 @@ This will compile and host the code on the localhost server, at http://localhost
 To install both the Frontend and Backend, first install the Frontend by following the instructions for Frontend Modification.
 Once this is completed, you can install the backend from the [EasyChef2022/back-end](https://github.com/EasyChef2022/back-end) repository from Github.
 
+### Required Tools:
+`python`
+`postgresql`
+
+First, modify the database settings in back-end/EasyChef/settings. You will see a block of code similar to the following:
+`DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'easychef',
+        'USER': 'mcirimele',
+        'PASSWORD': '*****',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+`
+
+Modify the USER and PASSWORD fields to your local psql values.
+
+Once this is done, run the following commands:
+`python3 manage.py makemigrations`
+`python3 manage.py migrate`
+`python3 manage.py runserver`
+
+Once the final line is run, the server will be active at 127.0.0.1:8000.
+
 
 How to modify:
 
